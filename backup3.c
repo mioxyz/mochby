@@ -97,35 +97,35 @@ const struct ChordMap cm[chord_map_count] = {
    {
       "i3-msg 'workspace prev'", // command
       { kn_capslock },           // mod keys
-      0,                         // mod key count (why is this zero?? it doesn't work otherwise, but that doesn't make sense...)
+      1,                         // mod key count
       kn_Q,                      // terminal key q
       1                      // on release (does nothing in the moment)
    },
    {
       "i3-msg 'workspace next'", // command
       { kn_capslock },           // mod keys
-      0,                         // mod key count
+      1,                         // mod key count
       kn_D,                      // terminal key
       1                      // on release (does nothing in the moment)
    },
    {
       "xdotool key 'Escape'",    //
       { kn_capslock },           // mod keys
-      0,                         // mod key count
+      1,                         // mod key count
       kn_F,                      // terminal key
       1                      // on release (does nothing in the moment)
    },
    {
       "xdotool key 'Page_Up'",    //
       { kn_capslock },           // mod keys
-      0,                         // mod key count
+      1,                         // mod key count
       kn_U,                      // terminal key
       1                      // on release (does nothing in the moment)
    },
    {
       "xdotool key 'Page_Down'",    //
       { kn_capslock },           // mod keys
-      0,                         // mod key count
+      1,                         // mod key count
       kn_H,                      // terminal key
       1                      // on release (does nothing in the moment)
    },
@@ -137,14 +137,14 @@ const struct ChordMap cm[chord_map_count] = {
       kn_L,                      // terminal key
       1                      // on release (does nothing in the moment)
    },
-   {
+   // {
       //"xdotool keydown 'Ctrl+Right'",
-      "echo blah2",
-      { kn_capslock, kn_A },     // mod keys
-      1,                         // mod key count
-      kn_L,                      // terminal key
-      0                      // on release (does nothing in the moment)
-   }
+   //    "echo blah2",
+   //    { kn_capslock, kn_A },     // mod keys
+   //    1,                         // mod key count
+   //    kn_L,                      // terminal key
+   //    false                      // on release (does nothing in the moment)
+   // }
 
 };
 
@@ -221,12 +221,12 @@ int main(void)
                         //printf("\nis true for: mod_key_state[cm[%d].mod_key[%d]] == %d\n", k, j, mod_key_state[cm[k].mod_key[j]]);
                      }
                   }
-                  //if(strcmp("echo blah1", cm[k].system_command) == 0 || strcmp("echo blah2", cm[k].system_command) == 0) {
+                  if(strcmp("echo blah1", cm[k].system_command) == 0 || strcmp("echo blah2", cm[k].system_command) == 0) {
                      printf("\n- - - - - - - - - - - -");
                      for( int j = 0; j <= cm[k].mod_key_count; ++j )
                         printf("\nmod_key_state[cm[%d].mod_key[%d]] == %d\n", k, j, mod_key_state[cm[k].mod_key[j]]);
 
-                  //}
+                  }
                   system( cm[k].system_command );
                }
                JOMAMA: continue;

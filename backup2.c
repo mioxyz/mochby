@@ -67,6 +67,12 @@ enum key_names {
    kn_up_slash = 53
 };
 
+enum evt_states {
+   evt_state_repeat = 2,
+   evt_state_pressed = 1,
+   evt_state_released = 0
+};
+
 struct ChordMap
 {
    char* const system_command;
@@ -92,60 +98,57 @@ const char *dev = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
 const unsigned short mod_keys[3] = { kn_capslock, kn_A }; // list of all mod keys used in any Keymap struct.
 //bool mod_key_state[1]; // state of each mod_key,
 
-static const unsigned chord_map_count = 6;
+static const unsigned chord_map_count = 7;
 const struct ChordMap cm[chord_map_count] = {
    {
       "i3-msg 'workspace prev'", // command
       { kn_capslock },           // mod keys
-      0,                         // mod key count (why is this zero?? it doesn't work otherwise, but that doesn't make sense...)
+      1,                         // mod key count
       kn_Q,                      // terminal key q
-      1                      // on release (does nothing in the moment)
+      evt_state_pressed          // trigger
    },
    {
       "i3-msg 'workspace next'", // command
       { kn_capslock },           // mod keys
-      0,                         // mod key count
+      1,                         // mod key count
       kn_D,                      // terminal key
-      1                      // on release (does nothing in the moment)
+      evt_state_pressed          // trigger
    },
    {
-      "xdotool key 'Escape'",    //
+      "xdotool key 'Escape'",    // 
       { kn_capslock },           // mod keys
-      0,                         // mod key count
+      1,                         // mod key count
       kn_F,                      // terminal key
-      1                      // on release (does nothing in the moment)
+      evt_state_pressed          // trigger
    },
    {
-      "xdotool key 'Page_Up'",    //
+      "xdotool key 'Page_Up'",    // 
       { kn_capslock },           // mod keys
-      0,                         // mod key count
+      1,                         // mod key count
       kn_U,                      // terminal key
-      1                      // on release (does nothing in the moment)
+      evt_state_pressed          // trigger
    },
    {
-      "xdotool key 'Page_Down'",    //
+      "xdotool key 'Page_Down'",    // 
       { kn_capslock },           // mod keys
-      0,                         // mod key count
+      1,                         // mod key count
       kn_H,                      // terminal key
-      1                      // on release (does nothing in the moment)
+      evt_state_pressed          // trigger
    },
    {
-      //"xdotool keydown 'Ctrl+Right'",
-      "echo blah1",
+      "xdotool keydown 'Ctrl+Right'",
       { kn_capslock, kn_A },     // mod keys
-      1,                         // mod key count
+      3,                         // mod key count
       kn_L,                      // terminal key
-      1                      // on release (does nothing in the moment)
+      evt_state_pressed          // trigger
    },
    {
-      //"xdotool keydown 'Ctrl+Right'",
-      "echo blah2",
+      "xdotool keyup 'Ctrl+Right'",
       { kn_capslock, kn_A },     // mod keys
-      1,                         // mod key count
+      2,                         // mod key count
       kn_L,                      // terminal key
-      0                      // on release (does nothing in the moment)
+      evt_state_released         // trigger
    }
-
 };
 
 // <<< ---------------------------------------------------------- Config ---
@@ -191,7 +194,7 @@ int main(void)
             {
                switch(inputEvent.value)
                {
-                  case 0:
+                  case 0: 
                      mod_key_state[inputEvent.code] = false;
                      //printf("setting mod_key_state[%d] to flase", ev.code);
                      break;
@@ -207,7 +210,7 @@ int main(void)
             if( inputEvent.code == cm[k].terminal_key )
             {
                //check if mandatory mod keys are supressed, and no other known mod keys are suppressed.
-               if( inputEvent.value == cm[k].trigger )
+               if( inputEvent.value == 1) //cm[k].trigger)
                {
                   for( int j = 0; j <= cm[k].mod_key_count; ++j )
                   {
@@ -221,12 +224,13 @@ int main(void)
                         //printf("\nis true for: mod_key_state[cm[%d].mod_key[%d]] == %d\n", k, j, mod_key_state[cm[k].mod_key[j]]);
                      }
                   }
-                  //if(strcmp("echo blah1", cm[k].system_command) == 0 || strcmp("echo blah2", cm[k].system_command) == 0) {
-                     printf("\n- - - - - - - - - - - -");
-                     for( int j = 0; j <= cm[k].mod_key_count; ++j )
-                        printf("\nmod_key_state[cm[%d].mod_key[%d]] == %d\n", k, j, mod_key_state[cm[k].mod_key[j]]);
 
-                  //}
+                  if(strcmp("", cm[k].system_command) == 0) {
+                     printf("asdddddddddddddddddddddd");
+                     for( int j = 0; j <= cm[k].mod_key_count; ++j )
+                        printf("\nmod_key_state[cm[%d].mod_key[%d]] == %d\n", k, j, mod_key_state[cm[k].mod_key[j]]); 
+                  }
+
                   system( cm[k].system_command );
                }
                JOMAMA: continue;
@@ -237,7 +241,7 @@ int main(void)
          // if(inputEvent.code == kn_A)
          // {
          //    if(mod_key_state[kn_capslock] && inputEvent.value == 1) {
-               //send ctrl down command
+               //send ctrl down command 
          //       system("xdotool keydown 'Ctrl'");
          //    }
          // }
