@@ -7,7 +7,7 @@ if !%x[whoami].chomp.eql? "root" then
    exit 0
 end
 
-if "mod_chord_bypass" != %x[pwd].chomp.split("/").last then
+if "mochby" != %x[pwd].chomp.split("/").last then
    puts "execute this script from main working directory."
    exit 0
 end

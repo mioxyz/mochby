@@ -5,12 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <iostream>
 #include <unistd.h>
 #include "key_names.h"
 #include "config.cpp"
 
-#define DEBUG_PRINT
+//#define DEBUG_PRINT
 
 int main(int argc, char** argv )
 {
@@ -45,6 +44,9 @@ LOOP:
       }
 
       if((EV_KEY == inputEvent.type) && (0 <= inputEvent.value) && (inputEvent.value <= 2)) {
+#ifdef DEBUG_PRINT         
+         if(mod_key_state[kn_capslock] && mod_key_state[kn_A]) fprintf(stderr,"code: %d, val: %d, type: %d", inputEvent.code, inputEvent.value, inputEvent.type);        
+#endif
          for(int k = 0; k < mod_key_count; ++k)
          {
             if(mod_keys[k] == inputEvent.code)
@@ -99,4 +101,3 @@ LOOP:
 
    return EXIT_FAILURE;
 }
-

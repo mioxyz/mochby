@@ -19,6 +19,9 @@ const struct ChordMap cm[chord_map_count] = {
  Depending on how many elements you add to `ChordMap cm[⋯]`, you will need to set `chord_map_count` appropriately, namely to the amount of elements in the array.
 Furthermore you might need to modify the enum `key_names` to fit your keyboard, depending if the keycodes of your hardware doesn't match up with that of mine. You can check this by running the application in debug mode by uncommenting the `#define _DEBUG` macro (and etc.)
 
+## Gotchas
+My keyboard allows for multiple keys to be pressed simultaneously, but certain keys become mutually exclusive, due to the hardware, for example of the three keys [capslock, A, S] if you press any of the two in this set it will register, but pressing the third key will always not register. I'm not 100% sure, though.
+
 ## Things that you can do with this
 1. map backspace to »`mod4`+`u`«. X11's xkb extension for one reason or another doesn't allow remapping backspace (though `Delete` is remappable) to the normal `Enter` key (though the keypad enter key can be remapped to »`mod4`+`;`« for example).
 

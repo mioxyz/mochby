@@ -8,14 +8,14 @@ end
 
 # check in which folder we are
 puts "before if..."
-if "mod_chord_bypass" != %x[pwd].chomp.split("/").last then
+if "mochby" != %x[pwd].chomp.split("/").last then
    puts "run this script in the main directory."
    exit 0
 end
 
 %x[mkdir -p ./bin ]
-
-stdout, stderr, status = Open3.capture3 "gcc -w ./mochby.cpp -o ./bin/mod_chord_bypass"
+# -w
+stdout, stderr, status = Open3.capture3 "gcc ./mochby.cpp -o ./bin/mod_chord_bypass"
 
 if status.success?
    puts stdout
