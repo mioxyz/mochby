@@ -1,0 +1,7 @@
+[Unit]
+Description=Mod Chord Bypass.
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/mod_chord_bypass/launcher.rb
+[Install]
+WantedBy=multi-user.target
