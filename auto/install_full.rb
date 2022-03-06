@@ -1,5 +1,7 @@
 #!/bin/ruby
 require 'open3'
+require_relative 'transpile_config'
+
 
 if !%x[whoami].chomp.eql? "root" then
    puts "you need to run this install-script as root."
@@ -11,6 +13,14 @@ puts "before if..."
 if "mochby" != %x[pwd].chomp.split("/").last then
    puts "run this script in the main directory."
    exit 0
+end
+
+puts "transpile config (config.json is transpiled into config.cpp and will overwrite config.cpp)? ? [Y/n]"
+yesses = ["y", "Y", "yes", "Yes", 1, "j", "ja", "yolo", ""]
+if yesses.include? gets.chomp then
+   transpileConfig()
+else
+   puts "nope."
 end
 
 %x[mkdir -p ./bin ]
@@ -72,6 +82,16 @@ puts "show service status? [Y/n]"
 yesses = ["y", "Y", "yes", "Yes", 1, "j", "ja", "yolo", ""]
 if yesses.include? gets.chomp then
    system "systemctl status mod-chord-bypass"
+else
+   puts "nope."
+end
+
+puts "Set keyboard repeat rate and repeat delay to ass-blazing-fast mode (with the following command)?"
+puts "      »xset r rate 152 44«"
+puts "[y/N] "
+
+if  yesses.include? gets.chomp then
+   %x[xset r rate 152 44]
 else
    puts "nope."
 end

@@ -1,67 +1,218 @@
 {
-   "chord_maps": [
-      {
-         "shell_command": "su -P -c \\\"export DISPLAY=:0; xdotool type 'Ö'\\\" mio"
-       , "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ]
-       , "terminal_key": "KEY_Y"
-       , "trigger": "keyPressed"
-       , "exclusive": true
-      },
-      {
-         "shell_command": "su -P -c \\\"export DISPLAY=:0; xdotool type 'Ü'\\\" mio"
-       , "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ]
-       , "terminal_key": "KEY_U"
-       , "trigger": "keyPressed"
-       , "exclusive": true
-      },
-      {
-         "shell_command": "su -P -c \\\"export DISPLAY=:0; xdotool type 'ü'\\\" mio"
-       , "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ]
-       , "terminal_key": "KEY_U"
-       , "trigger": "keyPressed"
-       , "exclusive": true
-      },
-      {
-         "shell_command": "su -P -c \\\"export DISPLAY=:0; xdotool type 'ö'\\\" mio"
-       , "mod_keys": [ "KEY_CAPSLOCK", "KEY_A" ]
-       , "terminal_key": "KEY_U"
-       , "trigger": "keyPressed"
-       , "exclusive": true
-      },
-      {
-         "shell_command": "su -P -c \\\"export DISPLAY=:0; xdotool type 'ä'\\\" mio"
-       , "mod_keys": [ "KEY_CAPSLOCK", "KEY_A" ]
-       , "terminal_key": "KEY_H"
-       , "trigger": "keyPressed"
-       , "exclusive": true
-      },
-      {
-         "virtual_keys": [ "KEY_LEFTCTRL", "KEY_LEFTSHIFT", "KEY_LEFT" ]
-         , "mod_keys": ["KEY_CAPSLOCK", "KEY_LEFTSHIFT", "KEY_A" ]
-         , "terminal_key" : "KEY_J"
-         , "trigger": "keyPressed"
-         , "exclusive": false
-      },
-      {
-         "virtual_keys": [ "KEY_LEFTCTRL", "KEY_LEFTSHIFT", "KEY_RIGHT" ]
-         , "mod_keys": ["KEY_CAPSLOCK", "KEY_LEFTSHIFT", "KEY_A" ]
-         , "terminal_key" : "KEY_L"
-         , "trigger": "keyPressed"
-         , "exclusive": false
-      },  
-      {
-         "virtual_keys": [ "KEY_LEFTCTRL", "KEY_LEFT" ]
-         , "mod_keys": ["KEY_CAPSLOCK", "KEY_A" ]
-         , "terminal_key" : "KEY_J"
-         , "trigger": "keyPressed"
-         , "exclusive": false
-      },
-      {
-         "virtual_keys": [ "KEY_LEFTCTRL", "KEY_RIGHT" ]
-         , "mod_keys": ["KEY_CAPSLOCK", "KEY_A" ]
-         , "terminal_key" : "KEY_L"
-         , "trigger": "keyPressed"
-         , "exclusive": false
-      }
-   ]
+  "comment": "See linux/input-event-codes.h for key names (e.g. KEY_CAPSLOCK). keys »shell_command« and »virtual_keys« are mutually exclusive. Sequence matters. Setting »exclusive« to true will cause subsequent chords to be skipped (but all preceding chords will trigger).",
+  "version": "1.2.220306_2230.220306_2333.fc5f246",
+  "shell_command_wrapper": {
+    "comment": "adds prefix and suffix to each command (concats the three strings).",
+    "prefix": "su -P -c \\\"export DISPLAY=:0;",
+    "suffix": "\\\" mio"
+  },
+  "chord_maps": [
+    {
+      "shell_command": "rofi -show window",
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_G",
+      "exclusive": true
+    },
+    {
+      "virtual_keys": [
+        "KEY_LEFTCTRL",
+        "KEY_DELETE"
+      ],
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_A"
+      ],
+      "terminal_key": "KEY_O",
+      "exclusive": true
+    },
+    {
+      "shell_command": "xdotool type 'Ö'",
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_S"
+      ],
+      "terminal_key": "KEY_Y",
+      "exclusive": true
+    },
+    {
+      "shell_command": "xdotool type 'Ü'",
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_S"
+      ],
+      "terminal_key": "KEY_U",
+      "exclusive": true
+    },
+    {
+      "shell_command": "xdotool type 'ü'",
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_S"
+      ],
+      "terminal_key": "KEY_U",
+      "exclusive": true,
+      "comment": "this command needs to be exclusive and also before the other CAPS+U chord, since they would both trigger if this isn't exclusive. Sequence matters."
+    },
+    {
+      "shell_command": "xdotool type 'ö'",
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_A"
+      ],
+      "terminal_key": "KEY_U",
+      "exclusive": true
+    },
+    {
+      "shell_command": "xdotool type 'ä'",
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_A"
+      ],
+      "terminal_key": "KEY_H",
+      "exclusive": true
+    },
+    {
+      "virtual_keys": [
+        "KEY_LEFTCTRL",
+        "KEY_LEFTSHIFT",
+        "KEY_LEFT"
+      ],
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_LEFTSHIFT",
+        "KEY_A"
+      ],
+      "terminal_key": "KEY_J",
+      "exclusive": false
+    },
+    {
+      "virtual_keys": [
+        "KEY_LEFTCTRL",
+        "KEY_LEFTSHIFT",
+        "KEY_RIGHT"
+      ],
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_LEFTSHIFT",
+        "KEY_A"
+      ],
+      "terminal_key": "KEY_L",
+      "exclusive": false
+    },
+    {
+      "virtual_keys": [
+        "KEY_LEFTCTRL",
+        "KEY_LEFT"
+      ],
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_A"
+      ],
+      "terminal_key": "KEY_J",
+      "exclusive": false
+    },
+    {
+      "virtual_keys": [
+        "KEY_LEFTCTRL",
+        "KEY_RIGHT"
+      ],
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_A"
+      ],
+      "terminal_key": "KEY_L",
+      "exclusive": false
+    },
+    {
+      "shell_command": "i3-msg 'workspace prev'",
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_Q"
+    },
+    {
+      "shell_command": "i3-msg 'workspace next'",
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_D"
+    },
+    {
+      "virtual_keys": [
+        "KEY_ESC"
+      ],
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_F"
+    },
+    {
+      "virtual_keys": [
+        "KEY_PAGEUP"
+      ],
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_U"
+    },
+    {
+      "virtual_keys": [
+        "KEY_PAGEDOWN"
+      ],
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_H"
+    },
+    {
+      "shell_command": "i3-msg focus down",
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_H"
+    },
+    {
+      "shell_command": "i3-msg focus left",
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_N"
+    },
+    {
+      "shell_command": "/home/mio/code/projects/i3-scripts/i3_open_term_in_empty_workspace.rb",
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_A"
+      ],
+      "terminal_key": "KEY_H"
+    }
+  ],
+  "inactive": [
+    {
+      "shell_command": "xdotool key 'Shift+Ctrl+Up'",
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_S"
+      ],
+      "terminal_key": "KEY_K"
+    },
+    {
+      "shell_command": "xdotool key 'Shift+Ctrl+Down'",
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_S"
+      ],
+      "terminal_key": "KEY_I"
+    },
+    {
+      "shell_command": "xdotool key 'ctrl+0xffc1'",
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_SLASH",
+      "exclusive": false
+    }
+  ]
 }

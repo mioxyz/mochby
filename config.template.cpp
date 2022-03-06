@@ -3,15 +3,18 @@
 #include <array>
 #include <linux/input-event-codes.h>
 
+static const char* transpileTime = /*%__TRANSPILE_TIME__%*/"";
+static const char* configVersion = /*%__CONFIG_VERSION__%*/"";
+
 // a list of all mod keys you plan on using (within mochby)
 static const unsigned short mod_keys[] = {
    /*%__MOD_KEYS_BODY__%*/
 };
 
 enum KeyPressEventTypes {
-    keyReleased = 0,
-    keyPressed = 1,
-    keyHeld = 2
+   keyReleased = 0,
+   keyPressed = 1,
+   keyHeld = 2
 };
 
 struct ChordMap
@@ -27,9 +30,9 @@ struct ChordMap
 };
 
 static const char* const evval[3] = {
-    "RELEASED",
-    "PRESSED ",
-    "REPEATED"
+   "RELEASED",
+   "PRESSED ",
+   "REPEATED"
 };
 
 static const std::array<int,  /*%__VIRTUAL_KEYS_COUNT__%*/0/*%_KEEP_ZERO_%*/> virtualKeys = {
@@ -38,7 +41,7 @@ static const std::array<int,  /*%__VIRTUAL_KEYS_COUNT__%*/0/*%_KEEP_ZERO_%*/> vi
 
 // TODO change to vector
 static const std::array<ChordMap, /*%__CHORD_MAP_COUNT__%*/0/*_KEEP_ZERO_*/> cm = {{
-  /*%__CHORD_MAP_BODY__%*/
+   /*%__CHORD_MAP_BODY__%*/
 }};
 
 constexpr std::size_t chord_map_count = sizeof(cm) / sizeof(ChordMap);

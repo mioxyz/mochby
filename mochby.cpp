@@ -1,8 +1,8 @@
 // #include "key_names.h"
 #include "config.cpp"
-#include <cstring> /* memset? */
+#include <cstring>
 #include <errno.h>
-#include <fcntl.h> /* O_WRONLY, O_NONBLOCK */
+#include <fcntl.h>
 #include <iostream>
 #include <linux/input-event-codes.h>
 #include <linux/input.h>
@@ -11,11 +11,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h> /* sleep, write */
+#include <unistd.h>
 
-//#include "virtual_keyboard.h"
-
-#define DEBUG_PRINT
+// #define DEBUG_PRINT
 
 void emit(int fd, int type, int code, int val)
 {
@@ -32,22 +30,26 @@ void emit(int fd, int type, int code, int val)
 
 int main(int argc, char** argv )
 {
+   fprintf(stdout, "transpile time: %s,\nconfig version: %s\nmod-keys: [", transpileTime, configVersion);
+   for(int k = 0; k < mod_key_count; ++k) fprintf(stdout, "%d, ", mod_keys[k]);
+   fprintf(stdout, "] mod-key-count: »%d«", mod_key_count);
+
    int fd = open("/dev/uinput", O_WRONLY | O_NONBLOCK);
    struct uinput_setup usetup;
    sleep(1);
-   auto errCode = ioctl(fd, UI_SET_EVBIT, EV_KEY); fprintf(stdout, "\nioctl(UI_SET_EVBIT) code: »%d«", errCode);
-   ioctl(fd, UI_SET_KEYBIT, KEY_SPACE);            fprintf(stdout, "\nioctl(UI_SET_KEYBIT) code: »%d«", errCode);
-   ioctl(fd, UI_SET_KEYBIT, KEY_A);                fprintf(stdout, "\nioctl(UI_SET_KEYBIT) code: »%d«", errCode);
+   auto errCode = ioctl(fd, UI_SET_EVBIT, EV_KEY);
+   ioctl(fd, UI_SET_KEYBIT, KEY_SPACE);
+   ioctl(fd, UI_SET_KEYBIT, KEY_A);
    for(auto& key : virtualKeys) {
-      ioctl(fd, UI_SET_KEYBIT, key);               fprintf(stdout, "\nioctl(UI_SET_KEYBIT) code: »%d«", errCode);
+      ioctl(fd, UI_SET_KEYBIT, key);
    }
    memset(&usetup, 0, sizeof(usetup));
    strcpy(usetup.name, "Mochby Keyboard");
    usetup.id.bustype = BUS_USB;
    usetup.id.vendor  = 0x0777;  // vendor
    usetup.id.product = 0x0777; // product
-   ioctl(fd, UI_DEV_SETUP, &usetup);               fprintf(stdout, "\nioctl(UI_DEV_SETUP) code: »%d«", errCode);
-   ioctl(fd, UI_DEV_CREATE);                       fprintf(stdout, "\nioctl(UI_DEV_CREATE) code: »%d«", errCode);
+   ioctl(fd, UI_DEV_SETUP, &usetup);
+   ioctl(fd, UI_DEV_CREATE);
 
    char* dev = argv[1];
    bool mod_key_state[255] = {false};
@@ -79,9 +81,6 @@ LOOP:
       }
 
       if((EV_KEY == inputEvent.type) && (0 <= inputEvent.value) && (inputEvent.value <= 2)) {
-// #ifdef DEBUG_PRINT
-//          if(mod_key_state[KEY_CAPSLOCK] && mod_key_state[KEY_A]) fprintf(stderr,"\ncode: %d, val: %d, type: %d", inputEvent.code, inputEvent.value, inputEvent.type);
-// #endif
          for(int k = 0; k < mod_key_count; ++k)
          {
             if(mod_keys[k] == inputEvent.code)
@@ -90,7 +89,6 @@ LOOP:
                   goto LOOP;
 
                mod_key_state[mod_keys[k]] = (KeyPressEventTypes::keyPressed == inputEvent.value) ? true : false;
-               //print modkeys
 #ifdef DEBUG_PRINT
                fprintf(stderr, "=====================\n");
                for(auto& key : mod_keys)
@@ -105,15 +103,19 @@ LOOP:
          for(int k = 0; k < chord_map_count; ++k) {
             if(inputEvent.code == cm[k].terminal_key)
             {
-               if((KeyPressEventTypes::keyReleased == inputEvent.value) && (0 < cm[k].virtual_key_count)) {
+               if((KeyPressEventTypes::keyReleased == inputEvent.value) && (0 < cm[k].virtual_key_count))
+               {
                   // ...release all virtual keys, this might cause issues, but it is unlikely
+#ifdef DEBUG_PRINT
                   fprintf(stdout, "\nvirtual_key_count: %d, keys: ", cm[k].virtual_key_count);
                   for(int i = 0; i < cm[k].virtual_key_count; ++i) fprintf(stdout, " %d", cm[k].virtual_keys[i]);
-                  
+#endif
                   for(int i = 0; i < cm[k].virtual_key_count; ++i)
                   {
                      // ..we might want to only send keyUp events to a subset of the keys
-                     fprintf(stdout, "\npressing VIRT key: %d", cm[k].virtual_keys[i]);
+#ifdef DEBUG_PRINT
+                     fprintf(stdout, "\n\npressing VIRT key: %d", cm[k].virtual_keys[i]);
+#endif
                      emit(fd, EV_KEY, cm[k].virtual_keys[i], 0);
                      emit(fd, EV_SYN, SYN_REPORT, 0);
                   }
@@ -122,33 +124,37 @@ LOOP:
                //check if mandatory mod keys are supressed, and no other known mod keys are suppressed.
                if(inputEvent.value == cm[k].trigger)
                {
-                  for(int j = 0; j <= cm[k].mod_key_count; ++j)
+                  for(int j = 0; j < cm[k].mod_key_count; ++j)
                   {
                      if(!mod_key_state[cm[k].mod_key[j]])
                      {
                         goto CHORD_MAP_CONTINUE;
                      }
                   }
+                  if(0 < cm[k].virtual_key_count)
+                  {
 #ifdef DEBUG_PRINT
-                  if(nullptr != cm[k].system_command) {
-                     fprintf(stderr, "\nchord matches, executing: »");
-                     fprintf(stderr, "%s", cm[k].system_command);
-                     fprintf(stderr, "«");
-                  }
+                     fprintf(stdout, "\n git into VirtKeyChord: %d", cm[k].virtual_key_count);
 #endif
-
-                  if(0 < cm[k].virtual_key_count) {
-                     fprintf(stdout, "\ngot here vkk: %d", cm[k].virtual_key_count);
                      for(int i = 0; i < cm[k].virtual_key_count; ++i) {
                         // ..we might want to only send keyUp events to a subset of the keys
-                        fprintf(stdout, "\nreleasing key: %d", cm[k].virtual_keys[i]); 
+#ifdef DEBUG_PRINT
+                        fprintf(stdout, "\nreleasing key: %d", cm[k].virtual_keys[i]);
+#endif
                         emit(fd, EV_KEY, cm[k].virtual_keys[i], 1);
                         emit(fd, EV_SYN, SYN_REPORT, 0);
                      }
                   }else{
+#ifdef DEBUG_PRINT
+                        if(nullptr != cm[k].system_command) fprintf(stderr, "\nchord matches, exec SYSTEM CMD: »%s«", cm[k].system_command);
+#endif
                      system(cm[k].system_command);
                   }
-                  if(cm[k].exclusive) {
+                  if(cm[k].exclusive)
+                  {
+#ifdef DEBUG_PRINT
+                     fprintf(stdout, "exclusive chord, returning to LOOP");
+#endif
                      goto LOOP;
                   }
                }
@@ -156,7 +162,6 @@ LOOP:
                continue;
             }
          }
-
       }
    } while (1);
 
