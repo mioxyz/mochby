@@ -1,0 +1,67 @@
+{
+   "chord_maps": [
+      {
+         "shell_command": "su -P -c \\\"export DISPLAY=:0; xdotool type 'Ö'\\\" mio"
+       , "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ]
+       , "terminal_key": "KEY_Y"
+       , "trigger": "keyPressed"
+       , "exclusive": true
+      },
+      {
+         "shell_command": "su -P -c \\\"export DISPLAY=:0; xdotool type 'Ü'\\\" mio"
+       , "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ]
+       , "terminal_key": "KEY_U"
+       , "trigger": "keyPressed"
+       , "exclusive": true
+      },
+      {
+         "shell_command": "su -P -c \\\"export DISPLAY=:0; xdotool type 'ü'\\\" mio"
+       , "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ]
+       , "terminal_key": "KEY_U"
+       , "trigger": "keyPressed"
+       , "exclusive": true
+      },
+      {
+         "shell_command": "su -P -c \\\"export DISPLAY=:0; xdotool type 'ö'\\\" mio"
+       , "mod_keys": [ "KEY_CAPSLOCK", "KEY_A" ]
+       , "terminal_key": "KEY_U"
+       , "trigger": "keyPressed"
+       , "exclusive": true
+      },
+      {
+         "shell_command": "su -P -c \\\"export DISPLAY=:0; xdotool type 'ä'\\\" mio"
+       , "mod_keys": [ "KEY_CAPSLOCK", "KEY_A" ]
+       , "terminal_key": "KEY_H"
+       , "trigger": "keyPressed"
+       , "exclusive": true
+      },
+      {
+         "virtual_keys": [ "KEY_LEFTCTRL", "KEY_LEFTSHIFT", "KEY_LEFT" ]
+         , "mod_keys": ["KEY_CAPSLOCK", "KEY_LEFTSHIFT", "KEY_A" ]
+         , "terminal_key" : "KEY_J"
+         , "trigger": "keyPressed"
+         , "exclusive": false
+      },
+      {
+         "virtual_keys": [ "KEY_LEFTCTRL", "KEY_LEFTSHIFT", "KEY_RIGHT" ]
+         , "mod_keys": ["KEY_CAPSLOCK", "KEY_LEFTSHIFT", "KEY_A" ]
+         , "terminal_key" : "KEY_L"
+         , "trigger": "keyPressed"
+         , "exclusive": false
+      },  
+      {
+         "virtual_keys": [ "KEY_LEFTCTRL", "KEY_LEFT" ]
+         , "mod_keys": ["KEY_CAPSLOCK", "KEY_A" ]
+         , "terminal_key" : "KEY_J"
+         , "trigger": "keyPressed"
+         , "exclusive": false
+      },
+      {
+         "virtual_keys": [ "KEY_LEFTCTRL", "KEY_RIGHT" ]
+         , "mod_keys": ["KEY_CAPSLOCK", "KEY_A" ]
+         , "terminal_key" : "KEY_L"
+         , "trigger": "keyPressed"
+         , "exclusive": false
+      }
+   ]
+}

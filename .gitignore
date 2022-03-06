@@ -7,3 +7,10 @@ mod_chord_bypass
 a.out
 auto/test.rb
 bin
+*.gch
+a.out
+config.bu.cpp
+test.cpp
+virtual_keyboard.cpp
+virtual_keyboard.h
+

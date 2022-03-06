@@ -15,7 +15,7 @@ end
 
 %x[mkdir -p ./bin ]
 # -w
-stdout, stderr, status = Open3.capture3 "gcc ./mochby.cpp -o ./bin/mod_chord_bypass"
+stdout, stderr, status = Open3.capture3 "g++ -std=c++20 mochby.cpp config.cpp -o ./bin/mod_chord_bypass "
 
 if status.success?
    puts stdout
