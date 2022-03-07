@@ -1589,8 +1589,8 @@ xkb_symbols "symbolic" {
  key <AC11> { [ apostrophe, quotedbl                            ] }; // ' " → ← rightarrow leftarrow
  
  key <AB01> { [ z,      Z,        Escape,           Greek_zeta     ] }; // z Z ζ Ζ
- key <AB02> { [ x,      X,        Home,             Greek_chi      ] }; // x X   Χ
- key <AB03> { [ c,      C,        End,              Greek_PSI      ] }; // c C   Ψ
+ key <AB02> { [ x,      X,        Home                             ] }; // x X   Χ
+ key <AB03> { [ c,      C,        End                              ] }; // c C   Ψ
  key <AB04> { [ v,      V,        Escape,           Greek_omega    ] }; // v V ω Ω
  key <AB05> { [ b,      B,        Escape,           Greek_beta     ] }; // b B β Β
  key <AB06> { [ n,      N,        Escape,           Greek_nu       ] }; // n N ν Ν

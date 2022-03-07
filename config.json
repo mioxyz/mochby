@@ -1,6 +1,6 @@
 {
   "comment": "See linux/input-event-codes.h for key names (e.g. KEY_CAPSLOCK). keys »shell_command« and »virtual_keys« are mutually exclusive. Sequence matters. Setting »exclusive« to true will cause subsequent chords to be skipped (but all preceding chords will trigger).",
-  "version": "1.2.220306_2230.220306_2333.fc5f246",
+  "version": "1.3.220306_2345.93496a0",
   "shell_command_wrapper": {
     "comment": "adds prefix and suffix to each command (concats the three strings).",
     "prefix": "su -P -c \\\"export DISPLAY=:0;",
@@ -25,6 +25,30 @@
         "KEY_A"
       ],
       "terminal_key": "KEY_O",
+      "exclusive": true
+    },
+    {
+      "virtual_keys": [
+        "KEY_LEFTSHIFT",
+        "KEY_HOME"
+      ],
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_A"
+      ],
+      "terminal_key": "KEY_X",
+      "exclusive": true
+    },
+    {
+      "virtual_keys": [
+        "KEY_LEFTSHIFT",
+        "KEY_END"
+      ],
+      "mod_keys": [
+        "KEY_CAPSLOCK",
+        "KEY_A"
+      ],
+      "terminal_key": "KEY_C",
       "exclusive": true
     },
     {

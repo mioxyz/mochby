@@ -3,8 +3,8 @@
 #include <array>
 #include <linux/input-event-codes.h>
 
-static const char* transpileTime = "2022-03-06 23:33:49";
-static const char* configVersion = "1.2.220306_2230.220306_2241.fc5f246.fc5f246";
+static const char* transpileTime = "2022-03-06 23:45:23";
+static const char* configVersion = "1.3.93496a0";
 
 // a list of all mod keys you plan on using (within mochby)
 static const unsigned short mod_keys[] = {
@@ -38,10 +38,12 @@ static const char* const evval[3] = {
    "REPEATED"
 };
 
-static const std::array<int,  8> virtualKeys = {
+static const std::array<int,  10> virtualKeys = {
    KEY_LEFTCTRL,
    KEY_DELETE,
    KEY_LEFTSHIFT,
+   KEY_HOME,
+   KEY_END,
    KEY_LEFT,
    KEY_RIGHT,
    KEY_ESC,
@@ -50,9 +52,11 @@ static const std::array<int,  8> virtualKeys = {
 };
 
 // TODO change to vector
-static const std::array<ChordMap, 19> cm = {{
+static const std::array<ChordMap, 21> cm = {{
    { "su -P -c \"export DISPLAY=:0;rofi -show window\" mio" , {KEY_CAPSLOCK}, 1, KEY_G, keyPressed, true },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_O, keyPressed, true, {KEY_LEFTCTRL, KEY_DELETE}, 2 },
+   { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_X, keyPressed, true, {KEY_LEFTSHIFT, KEY_HOME}, 2 },
+   { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_C, keyPressed, true, {KEY_LEFTSHIFT, KEY_END}, 2 },
    { "su -P -c \"export DISPLAY=:0;xdotool type 'Ö'\" mio" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_Y, keyPressed, true },
    { "su -P -c \"export DISPLAY=:0;xdotool type 'Ü'\" mio" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_U, keyPressed, true },
    { "su -P -c \"export DISPLAY=:0;xdotool type 'ü'\" mio" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_U, keyPressed, true },

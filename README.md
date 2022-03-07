@@ -52,6 +52,7 @@ My keyboard allows for multiple keys to be pressed simultaneously, but certain k
 - [ ] write make or cmake file
 - [ ] fix the Umlaute.
 - [ ] add switchable modes
+- [ ] add map `Capslock+A+C` to `Shift+End` and `Capslock+A+X` to `Shift+Home`
 
 ## Credits
 Thank goodness for [this stackoverflow post](https://stackoverflow.com/questions/20943322/accessing-keys-from-linux-input-device), it answers all of the hard (to me at least) bits and left relatively little to do. I'm a relative new-ish developer and my area of work is completely disjoint from the linux kernel land and I only recently acquired the necessary knowledge to type the right question into my favorite search engine to produce the aforementioned stackoverflow post.
