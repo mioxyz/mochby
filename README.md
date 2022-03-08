@@ -54,6 +54,27 @@ My keyboard allows for multiple keys to be pressed simultaneously, but certain k
 - [ ] add switchable modes
 - [ ] add map `Capslock+A+C` to `Shift+End` and `Capslock+A+X` to `Shift+Home`
 
+## Open Problems
+There is no way to suppress the physical keyboard's output. For example, mapping `Capslock+Space` to the `_`-character can be done in two ways, either by using virtual keys (which is faster than calling xdotool and simulates key-press and key-release events):
+```
+{
+   "virtual_keys": [ "KEY_LEFTSHIFT", "KEY_MINUS" ],
+   "mod_keys": [ "KEY_CAPSLOCK" ],
+   "terminal_key": "KEY_SPACE",
+   "exclusive": false
+}
+```
+or using *xdotool*:
+```
+{
+   "shell_command": "xdotool type '_'",
+   "mod_keys": [ "KEY_CAPSLOCK" ],
+   "terminal_key": "KEY_SPACE",
+   "exclusive": false
+}
+```
+The problem that arises is that the Space symbol is not being suppressed, resulting in ` _`« being printed instead of the desired output »`_`« . I usually solve this by mapping `Capslock+<some_key>` to `Escape` or nothing in the xkb symbols file, but this is not possible for the Space key (and other 'special' keys). The current workaround is to send a `BackSpace` keypress to remove the space character, which works fine in most editors, but is quite janky. The only way I see how this can be fixed is if I bake this application directly into the linux kernel (making the keyboard devices "invisible" or simply hacking whatever is controlling /dev/input directly), which might be a very dumb idea, but eh.
+
 ## Credits
 Thank goodness for [this stackoverflow post](https://stackoverflow.com/questions/20943322/accessing-keys-from-linux-input-device), it answers all of the hard (to me at least) bits and left relatively little to do. I'm a relative new-ish developer and my area of work is completely disjoint from the linux kernel land and I only recently acquired the necessary knowledge to type the right question into my favorite search engine to produce the aforementioned stackoverflow post.
 

@@ -2,7 +2,6 @@
 require 'open3'
 require_relative 'transpile_config'
 
-
 if !%x[whoami].chomp.eql? "root" then
    puts "you need to run this install-script as root."
    exit 0
@@ -18,6 +17,7 @@ end
 puts "transpile config (config.json is transpiled into config.cpp and will overwrite config.cpp)? ? [Y/n]"
 yesses = ["y", "Y", "yes", "Yes", 1, "j", "ja", "yolo", ""]
 if yesses.include? gets.chomp then
+   print " ...yes."
    transpileConfig()
 else
    puts "nope."
@@ -81,6 +81,7 @@ end
 puts "show service status? [Y/n]"
 yesses = ["y", "Y", "yes", "Yes", 1, "j", "ja", "yolo", ""]
 if yesses.include? gets.chomp then
+   print " ...yes."
    system "systemctl status mod-chord-bypass"
 else
    puts "nope."
@@ -91,6 +92,7 @@ puts "      »xset r rate 152 44«"
 puts "[y/N] "
 
 if  yesses.include? gets.chomp then
+   print " ...yes."
    %x[xset r rate 152 44]
 else
    puts "nope."

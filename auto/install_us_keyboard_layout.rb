@@ -2,27 +2,6 @@
 require 'open3'
 require 'colorize'
 
-# puts String.colors
-# puts "black".black
-# puts "light_black".light_black
-# puts "red".red
-# puts "light_red".light_red
-# puts "green".green
-# puts "light_green".light_green
-# puts "yellow".yellow
-# puts "light_yellow".light_yellow
-# puts "blue".blue
-# puts "light_blue".light_blue
-# puts "magenta".magenta
-# puts "light_magenta".light_magenta
-# puts "cyan".cyan
-# puts "light_cyan".light_cyan
-# puts "white".white
-# puts "light_white".light_white
-# puts "default".default
-# exit true
-
-
 puts "This script copies and overwrites the symbolic US keyboard layout into the X11 us xkb folder and subsequently enables it. You can edit this script and copy out the relevant pieces into your window manager's startup script for convenience."
 
 if !%x[whoami].chomp.eql? "root" then

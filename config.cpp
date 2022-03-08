@@ -3,8 +3,8 @@
 #include <array>
 #include <linux/input-event-codes.h>
 
-static const char* transpileTime = "2022-03-06 23:45:23";
-static const char* configVersion = "1.3.93496a0";
+static const char* transpileTime = "2022-03-08 11:04:53";
+static const char* configVersion = "1.13.220308_1104.4f0dd9a";
 
 // a list of all mod keys you plan on using (within mochby)
 static const unsigned short mod_keys[] = {
@@ -52,7 +52,7 @@ static const std::array<int,  10> virtualKeys = {
 };
 
 // TODO change to vector
-static const std::array<ChordMap, 21> cm = {{
+static const std::array<ChordMap, 22> cm = {{
    { "su -P -c \"export DISPLAY=:0;rofi -show window\" mio" , {KEY_CAPSLOCK}, 1, KEY_G, keyPressed, true },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_O, keyPressed, true, {KEY_LEFTCTRL, KEY_DELETE}, 2 },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_X, keyPressed, true, {KEY_LEFTSHIFT, KEY_HOME}, 2 },
@@ -64,6 +64,7 @@ static const std::array<ChordMap, 21> cm = {{
    { "su -P -c \"export DISPLAY=:0;xdotool type 'ä'\" mio" , {KEY_CAPSLOCK, KEY_A}, 2, KEY_H, keyPressed, true },
    { nullptr, {KEY_CAPSLOCK, KEY_LEFTSHIFT, KEY_A}, 3, KEY_J, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFTSHIFT, KEY_LEFT}, 3 },
    { nullptr, {KEY_CAPSLOCK, KEY_LEFTSHIFT, KEY_A}, 3, KEY_L, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFTSHIFT, KEY_RIGHT}, 3 },
+   { "su -P -c \"export DISPLAY=:0;xdotool key 'BackSpace'; xdotool type '_'\" mio" , {KEY_CAPSLOCK}, 1, KEY_SPACE, keyPressed, false },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_J, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFT}, 2 },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_L, keyPressed, false, {KEY_LEFTCTRL, KEY_RIGHT}, 2 },
    { "su -P -c \"export DISPLAY=:0;i3-msg 'workspace prev'\" mio" , {KEY_CAPSLOCK}, 1, KEY_Q, keyPressed, false },

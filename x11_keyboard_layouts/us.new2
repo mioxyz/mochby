@@ -1560,7 +1560,7 @@ xkb_symbols "symbolic" {
  key <AE08> { [ 8,     asterisk,    eightsuperior, infinity       ] }; // 8 * ⁸ ∞
  key <AE09> { [ 9,     parenleft,   ninesuperior,  periodcentered ] }; // 9 ( ⁹ ·
  key <AE10> { [ 0,     parenright,  zerosuperior,  degree         ] }; // 0 ) ⁰ °
- key <AE11> { [ minus, underscore,  notequal,      plusminus      ] }; // - _ ≠ ±
+ key <AE11> { [ minus, underscore,  notequal,      underscore     ] }; // - _ ≠ ±
  key <AE12> { [ equal, plus,        multiply,      division       ] }; // = + × ÷
  #U2200 upsidedown A
  key <AD01> { [ q,            Q,          Escape       , asciicircum   ] }; // q Q ∀ ∃
