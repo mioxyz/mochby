@@ -1563,38 +1563,40 @@ xkb_symbols "symbolic" {
  key <AE11> { [ minus, underscore,  notequal,      underscore     ] }; // - _ ≠ ±
  key <AE12> { [ equal, plus,        multiply,      division       ] }; // = + × ÷
  #U2200 upsidedown A
- key <AD01> { [ q,            Q,          Escape       , asciicircum   ] }; // q Q ∀ ∃
+// replacing all "Escape" with "Caps" to prevent from sending esc to windows.
+ key <AD01> { [ q,            Q,          Caps         , asciicircum   ] }; // q Q ∀ ∃
  key <AD02> { [ w,            W,          ampersand    , elementof     ] }; // w W & ∉
  key <AD03> { [ e,            E,          asterisk     , Greek_epsilon ] }; // e E * Ε
  key <AD04> { [ r,            R,          asciicircum  , Greek_RHO     ] }; // p P ρ Ρ
- key <AD05> { [ t,            T,          Escape                       ] }; // t T τ Τ
- key <AD06> { [ y,            Y,          Escape                       ] }; // y Y υ Υ
- key <AD07> { [ u,            U,          Escape                       ] }; // u U ` Θ
+ key <AD05> { [ t,            T,          Caps                       ] }; // t T τ Τ
+ key <AD06> { [ y,            Y,          Caps                       ] }; // y Y υ Υ
+ key <AD07> { [ u,            U,          Caps                       ] }; // u U ` Θ
  key <AD08> { [ i,            I,          Up                           ] }; // i I ι Ι
  key <AD09> { [ o,            O,          Delete       , odiaeresis    ] }; // o O ο Ο
- key <AD10> { [ p,            P,          Escape       , Odiaeresis    ] }; // p P π Π
- key <AD11> { [ bracketleft,  braceleft,  Escape                       ] }; // [ { ∪ ∩
- key <AD12> { [ bracketright, braceright, Escape                       ] }; // ] } ⊂ ⊃
+ key <AD10> { [ p,            P,          Caps       , Odiaeresis    ] }; // p P π Π
+ key <AD11> { [ bracketleft,  braceleft,  Caps                       ] }; // [ { ∪ ∩
+ key <AD12> { [ bracketright, braceright, Caps                       ] }; // ] } ⊂ ⊃
 
- key <AC01> { [ a,          A,        Escape                    ] }; // a A   Α
- key <AC02> { [ s,          S,        Escape,      ssharp       ] }; // s S   Σ
- key <AC03> { [ d,          D,        Escape,      Escape       ] }; // d D δ Δ
+// sadly, NoSymbol will cause the last valid symbol to be printed, so this is basically useless...
+ key <AC01> { [ a,          A,        Control_L                 ] }; // a A   Α
+ key <AC02> { [ s,          S,        Control_L,   ssharp       ] }; // s S   Σ
+ key <AC03> { [ d,          D,        Caps,        Escape       ] }; // d D δ Δ
  key <AC04> { [ f,          F,        Escape,      Greek_phi    ] }; // f F φ Φ
- key <AC05> { [ g,          G,        Escape,      grave        ] }; // g G γ Γ
- key <AC06> { [ h,          H,        Escape,      Escape       ] }; // h H η Η
+ key <AC05> { [ g,          G,        Caps,        grave        ] }; // g G γ Γ
+ key <AC06> { [ h,          H,        Caps,        Escape       ] }; // h H η Η
  key <AC07> { [ j,          J,        Left                      ] }; // j J ξ Ξ
  key <AC08> { [ k,          K,        Down                      ] }; // k K κ Κ
  key <AC09> { [ l,          L,        Right                     ] }; // l L λ h
  key <AC10> { [ semicolon,  colon,    KP_Enter,    uparrow      ] }; // ; :   ↑
  key <AC11> { [ apostrophe, quotedbl                            ] }; // ' " → ← rightarrow leftarrow
  
- key <AB01> { [ z,      Z,        Escape,           Greek_zeta     ] }; // z Z ζ Ζ
+ key <AB01> { [ z,      Z,        Caps,           Greek_zeta     ] }; // z Z ζ Ζ
  key <AB02> { [ x,      X,        Home                             ] }; // x X   Χ
  key <AB03> { [ c,      C,        End                              ] }; // c C   Ψ
- key <AB04> { [ v,      V,        Escape,           Greek_omega    ] }; // v V ω Ω
- key <AB05> { [ b,      B,        Escape,           Greek_beta     ] }; // b B β Β
- key <AB06> { [ n,      N,        Escape,           Greek_nu       ] }; // n N ν Ν
- key <AB07> { [ m,      M,        Escape,           Greek_mu       ] }; // m M μ Μ
+ key <AB04> { [ v,      V,        Caps,           Greek_omega    ] }; // v V ω Ω
+ key <AB05> { [ b,      B,        Caps,           Greek_beta     ] }; // b B β Β
+ key <AB06> { [ n,      N,        Caps,           Greek_nu       ] }; // n N ν Ν
+ key <AB07> { [ m,      M,        Caps,           Greek_mu       ] }; // m M μ Μ
  key <AB08> { [ comma,  less,     guillemotleft,    Greek_lambda   ] }; // , < «
  key <AB09> { [ period, greater,  guillemotright                   ] }; // . > »
  key <AB10> { [ slash,  question, Escape                           ] }; // / ? 
