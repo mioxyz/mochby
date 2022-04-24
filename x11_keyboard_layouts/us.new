@@ -1556,9 +1556,9 @@ xkb_symbols "symbolic" {
  key <AE04> { [ 4,     dollar,      foursuperior,  EuroSign       ] }; // 4 $ ⁴ €
  key <AE05> { [ 5,     percent,     fivesuperior,  U2030          ] }; // 5 % ⁵ ‰
  key <AE06> { [ 6,     asciicircum, sixsuperior,   squareroot     ] }; // 6 ^ ⁶ √
- key <AE07> { [ 7,     ampersand,   sevensuperior, section        ] }; // 7 & ⁷ §
- key <AE08> { [ 8,     asterisk,    eightsuperior, infinity       ] }; // 8 * ⁸ ∞
- key <AE09> { [ 9,     parenleft,   ninesuperior,  periodcentered ] }; // 9 ( ⁹ ·
+ key <AE07> { [ 7,     ampersand,   Num_Lock,      section        ] }; // 7 & ⁷ §
+ key <AE08> { [ 8,     asterisk,    Num_Lock,      infinity       ] }; // 8 * ⁸ ∞
+ key <AE09> { [ 9,     parenleft,   Num_Lock,      periodcentered ] }; // 9 ( ⁹ ·
  key <AE10> { [ 0,     parenright,  zerosuperior,  degree         ] }; // 0 ) ⁰ °
  key <AE11> { [ minus, underscore,  notequal,      underscore     ] }; // - _ ≠ ±
  key <AE12> { [ equal, plus,        multiply,      division       ] }; // = + × ÷

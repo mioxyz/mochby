@@ -3,8 +3,8 @@
 #include <array>
 #include <linux/input-event-codes.h>
 
-static const char* transpileTime = "2022-04-24 16:20:20";
-static const char* configVersion = "1.27.220424_1620.7db0355";
+static const char* transpileTime = "2022-04-24 17:49:30";
+static const char* configVersion = "1.29.220424_1749.07dd104";
 
 // a list of all mod keys you plan on using (within mochby)
 static const unsigned short mod_keys[] = {
@@ -52,18 +52,19 @@ static const std::array<int,  10> virtualKeys = {
 };
 
 // TODO change to vector
-static const std::array<ChordMap, 24> cm = {{
+static const std::array<ChordMap, 25> cm = {{
    { "su -P -c \"export DISPLAY=:0;rofi -show window\" ottoma" , {KEY_CAPSLOCK}, 1, KEY_G, keyPressed, true },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_O, keyPressed, true, {KEY_LEFTCTRL, KEY_DELETE}, 2 },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_X, keyPressed, true, {KEY_LEFTSHIFT, KEY_HOME}, 2 },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_C, keyPressed, true, {KEY_LEFTSHIFT, KEY_END}, 2 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_X, keyPressed, true, {KEY_HOME}, 1 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_C, keyPressed, true, {KEY_END}, 1 },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'Ö'\" ottoma" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_Y, keyPressed, true },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'Ü'\" ottoma" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_U, keyPressed, true },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'ü'\" ottoma" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_U, keyPressed, true },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'ö'\" ottoma" , {KEY_CAPSLOCK, KEY_A}, 2, KEY_U, keyPressed, true },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'ä'\" ottoma" , {KEY_CAPSLOCK, KEY_A}, 2, KEY_H, keyPressed, true },
+   { "su -P -c \"export DISPLAY=:0;xdotool type 'Ö'\" ottoma" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_9, keyPressed, true },
+   { "su -P -c \"export DISPLAY=:0;xdotool type 'ö'\" ottoma" , {KEY_CAPSLOCK}, 1, KEY_9, keyPressed, true },
+   { "su -P -c \"export DISPLAY=:0;xdotool type 'Ü'\" ottoma" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_7, keyPressed, true },
+   { "su -P -c \"export DISPLAY=:0;xdotool type 'ü'\" ottoma" , {KEY_CAPSLOCK}, 1, KEY_7, keyPressed, true },
+   { "su -P -c \"export DISPLAY=:0;xdotool type 'Ä'\" ottoma" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_8, keyPressed, true },
+   { "su -P -c \"export DISPLAY=:0;xdotool type 'ä'\" ottoma" , {KEY_CAPSLOCK}, 1, KEY_8, keyPressed, true },
    { nullptr, {KEY_CAPSLOCK, KEY_LEFTSHIFT, KEY_A}, 3, KEY_J, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFTSHIFT, KEY_LEFT}, 3 },
    { nullptr, {KEY_CAPSLOCK, KEY_LEFTSHIFT, KEY_A}, 3, KEY_L, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFTSHIFT, KEY_RIGHT}, 3 },
    { "su -P -c \"export DISPLAY=:0;xdotool key 'BackSpace'; xdotool type '_'\" ottoma" , {KEY_CAPSLOCK}, 1, KEY_SPACE, keyPressed, false },

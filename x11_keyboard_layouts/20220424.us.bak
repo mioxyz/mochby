@@ -1556,9 +1556,9 @@ xkb_symbols "symbolic" {
  key <AE04> { [ 4,     dollar,      foursuperior,  EuroSign       ] }; // 4 $ ⁴ €
  key <AE05> { [ 5,     percent,     fivesuperior,  U2030          ] }; // 5 % ⁵ ‰
  key <AE06> { [ 6,     asciicircum, sixsuperior,   squareroot     ] }; // 6 ^ ⁶ √
- key <AE07> { [ 7,     ampersand,   sevensuperior, section        ] }; // 7 & ⁷ §
- key <AE08> { [ 8,     asterisk,    eightsuperior, infinity       ] }; // 8 * ⁸ ∞
- key <AE09> { [ 9,     parenleft,   ninesuperior,  periodcentered ] }; // 9 ( ⁹ ·
+ key <AE07> { [ 7,     ampersand,   Num_Lock,      section        ] }; // 7 & ⁷ §
+ key <AE08> { [ 8,     asterisk,    Num_Lock,      infinity       ] }; // 8 * ⁸ ∞
+ key <AE09> { [ 9,     parenleft,   Num_Lock,      periodcentered ] }; // 9 ( ⁹ ·
  key <AE10> { [ 0,     parenright,  zerosuperior,  degree         ] }; // 0 ) ⁰ °
  key <AE11> { [ minus, underscore,  notequal,      underscore     ] }; // - _ ≠ ±
  key <AE12> { [ equal, plus,        multiply,      division       ] }; // = + × ÷
@@ -1591,8 +1591,8 @@ xkb_symbols "symbolic" {
  key <AC11> { [ apostrophe, quotedbl                         ] }; // ' " → ← rightarrow leftarrow
  
  key <AB01> { [ z,      Z,        Num_Lock,       Greek_zeta    ] }; // z Z ζ Ζ
- key <AB02> { [ x,      X,        Home                          ] }; // x X   Χ
- key <AB03> { [ c,      C,        End                           ] }; // c C   Ψ
+ key <AB02> { [ x,      X,        Num_Lock,       Home          ] }; // x X   Χ
+ key <AB03> { [ c,      C,        Num_Lock,       End           ] }; // c C   Ψ
  key <AB04> { [ v,      V,        Num_Lock,       Greek_omega   ] }; // v V ω Ω
  key <AB05> { [ b,      B,        Num_Lock,       Greek_beta    ] }; // b B β Β
  key <AB06> { [ n,      N,        Num_Lock,       Greek_nu      ] }; // n N ν Ν

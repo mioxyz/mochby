@@ -1,8 +1,8 @@
 {
   "comment": "See linux/input-event-codes.h for key names (e.g. KEY_CAPSLOCK). keys »shell_command« and »virtual_keys« are mutually exclusive. Sequence matters. Setting »exclusive« to true will cause subsequent chords to be skipped (but all preceding chords will trigger).",
   "version_major": 1,
-  "version_increment": 27,
-  "version": "1.27.220424_1620.7db0355",
+  "version_increment": 29,
+  "version": "1.29.220424_1749.07dd104",
   "shell_command_wrapper": {
     "comment": "adds prefix and suffix to each command (concats the three strings).",
     "prefix": "su -P -c \\\"export DISPLAY=:0;",
@@ -79,7 +79,15 @@
         "KEY_CAPSLOCK",
         "KEY_S"
       ],
-      "terminal_key": "KEY_Y",
+      "terminal_key": "KEY_9",
+      "exclusive": true
+    },
+    {
+      "shell_command": "xdotool type 'ö'",
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_9",
       "exclusive": true
     },
     {
@@ -88,35 +96,32 @@
         "KEY_CAPSLOCK",
         "KEY_S"
       ],
-      "terminal_key": "KEY_U",
+      "terminal_key": "KEY_7",
       "exclusive": true
     },
     {
       "shell_command": "xdotool type 'ü'",
       "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_7",
+      "exclusive": true
+    },
+    {
+      "shell_command": "xdotool type 'Ä'",
+      "mod_keys": [
         "KEY_CAPSLOCK",
         "KEY_S"
       ],
-      "terminal_key": "KEY_U",
-      "exclusive": true,
-      "comment": "this command needs to be exclusive and also before the other CAPS+U chord, since they would both trigger if this isn't exclusive. Sequence matters."
-    },
-    {
-      "shell_command": "xdotool type 'ö'",
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_A"
-      ],
-      "terminal_key": "KEY_U",
+      "terminal_key": "KEY_8",
       "exclusive": true
     },
     {
       "shell_command": "xdotool type 'ä'",
       "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_A"
+        "KEY_CAPSLOCK"
       ],
-      "terminal_key": "KEY_H",
+      "terminal_key": "KEY_8",
       "exclusive": true
     },
     {
@@ -131,7 +136,8 @@
         "KEY_A"
       ],
       "terminal_key": "KEY_J",
-      "exclusive": false
+      "exclusive": false,
+      "comment": "doesn't seem to work!"
     },
     {
       "virtual_keys": [
@@ -145,7 +151,8 @@
         "KEY_A"
       ],
       "terminal_key": "KEY_L",
-      "exclusive": false
+      "exclusive": false,
+      "comment": "doesn't seem to work!"
     },
     {
       "shell_command": "xdotool key 'BackSpace'; xdotool type '_'",
