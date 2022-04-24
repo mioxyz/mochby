@@ -52,7 +52,7 @@ My keyboard allows for multiple keys to be pressed simultaneously, but certain k
 - [ ] write make or cmake file
 - [ ] fix the Umlaute.
 - [ ] add switchable modes
-- [ ] add map `Capslock+A+C` to `Shift+End` and `Capslock+A+X` to `Shift+Home`
+- [+] add map `Capslock+A+C` to `Shift+End` and `Capslock+A+X` to `Shift+Home`
 
 ## Open Problems
 There is no way to suppress the physical keyboard's output. For example, mapping `Capslock+Space` to the `_`-character can be done in two ways, either by using virtual keys (which is faster than calling xdotool and simulates key-press and key-release events):
@@ -74,6 +74,11 @@ or using *xdotool*:
 }
 ```
 The problem that arises is that the Space symbol is not being suppressed, resulting in ` _`« being printed instead of the desired output »`_`« . I usually solve this by mapping `Capslock+<some_key>` to `Escape` or nothing in the xkb symbols file, but this is not possible for the Space key (and other 'special' keys). The current workaround is to send a `BackSpace` keypress to remove the space character, which works fine in most editors, but is quite janky. The only way I see how this can be fixed is if I bake this application directly into the linux kernel (making the keyboard devices "invisible" or simply hacking whatever is controlling /dev/input directly), which might be a very dumb idea, but eh.
+
+**Update**: I found a better "Do-Nothing" key which now replaces most of the `Escape` key symbols which were previously on the US-Intl. symbolic key layout you can find in `./x11_keyboard_layouts/us.new`: `Num_Lock`.
+The key `Num_Lock` thankfully does absolutely nothing in any of the applications I frequently use, `Escape` on the other hand often has side effects, e.g. if you're typing on a website using Chromium or Firefox, pressing `Escape` often has some meaning on the site you're using, similarly some curses-based terminal-emulator applications such as `btop` and the `kakoune` editor interpret the `Escape` key in some way. There are seemingly other "Do-Nothing" keys, such as `Caps` and `Multi` (which are valid xkb symbols), however they are ignored by most applications and the symbol on the next-lower mod level is printed in its stead (though I'm not sure if the application or X11 is doing this, in any case it doesn't work), but `Num_Lock` is the only one which is accepted as an actual keypress and not simply ignored by X11 or the application. 
+To make a long story short: placing `Num_Lock` on the 3rd mod Level in your xkb file will cause X11 to seemingly send no direct keystrokes to the active window, and allow mod-chord-bypass to intercept the raw keypresses and then perform whatever custom action you wish.
+
 
 ## Credits
 Thank goodness for [this stackoverflow post](https://stackoverflow.com/questions/20943322/accessing-keys-from-linux-input-device), it answers all of the hard (to me at least) bits and left relatively little to do. I'm a relative new-ish developer and my area of work is completely disjoint from the linux kernel land and I only recently acquired the necessary knowledge to type the right question into my favorite search engine to produce the aforementioned stackoverflow post.

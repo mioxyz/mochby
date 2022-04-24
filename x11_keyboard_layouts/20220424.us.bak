@@ -1564,42 +1564,42 @@ xkb_symbols "symbolic" {
  key <AE12> { [ equal, plus,        multiply,      division       ] }; // = + × ÷
  #U2200 upsidedown A
 // replacing all "Escape" with "Caps" to prevent from sending esc to windows.
- key <AD01> { [ q,            Q,          Caps         , asciicircum   ] }; // q Q ∀ ∃
+ key <AD01> { [ q,            Q,          Num_Lock     , asciicircum   ] }; // q Q ∀ ∃
  key <AD02> { [ w,            W,          ampersand    , elementof     ] }; // w W & ∉
  key <AD03> { [ e,            E,          asterisk     , Greek_epsilon ] }; // e E * Ε
  key <AD04> { [ r,            R,          asciicircum  , Greek_RHO     ] }; // p P ρ Ρ
- key <AD05> { [ t,            T,          Caps                       ] }; // t T τ Τ
- key <AD06> { [ y,            Y,          Caps                       ] }; // y Y υ Υ
- key <AD07> { [ u,            U,          Caps                       ] }; // u U ` Θ
+ key <AD05> { [ t,            T,          Num_Lock                     ] }; // t T τ Τ
+ key <AD06> { [ y,            Y,          Num_Lock                     ] }; // y Y υ Υ
+ key <AD07> { [ u,            U,          Num_Lock                     ] }; // u U ` Θ
  key <AD08> { [ i,            I,          Up                           ] }; // i I ι Ι
  key <AD09> { [ o,            O,          Delete       , odiaeresis    ] }; // o O ο Ο
- key <AD10> { [ p,            P,          Caps       , Odiaeresis    ] }; // p P π Π
- key <AD11> { [ bracketleft,  braceleft,  Caps                       ] }; // [ { ∪ ∩
- key <AD12> { [ bracketright, braceright, Caps                       ] }; // ] } ⊂ ⊃
+ key <AD10> { [ p,            P,          Num_Lock     , Odiaeresis    ] }; // p P π Π
+ key <AD11> { [ bracketleft,  braceleft,  Num_Lock                     ] }; // [ { ∪ ∩
+ key <AD12> { [ bracketright, braceright, Num_Lock                     ] }; // ] } ⊂ ⊃
 
 // sadly, NoSymbol will cause the last valid symbol to be printed, so this is basically useless...
- key <AC01> { [ a,          A,        Control_L                 ] }; // a A   Α
- key <AC02> { [ s,          S,        Control_L,   ssharp       ] }; // s S   Σ
- key <AC03> { [ d,          D,        Caps,        Escape       ] }; // d D δ Δ
- key <AC04> { [ f,          F,        Escape,      Greek_phi    ] }; // f F φ Φ
- key <AC05> { [ g,          G,        Caps,        grave        ] }; // g G γ Γ
- key <AC06> { [ h,          H,        Caps,        Escape       ] }; // h H η Η
- key <AC07> { [ j,          J,        Left                      ] }; // j J ξ Ξ
- key <AC08> { [ k,          K,        Down                      ] }; // k K κ Κ
- key <AC09> { [ l,          L,        Right                     ] }; // l L λ h
- key <AC10> { [ semicolon,  colon,    KP_Enter,    uparrow      ] }; // ; :   ↑
- key <AC11> { [ apostrophe, quotedbl                            ] }; // ' " → ← rightarrow leftarrow
+ key <AC01> { [ a,          A,        Num_Lock               ] }; // a A   Α
+ key <AC02> { [ s,          S,        Num_Lock,  ssharp      ] }; // s S   Σ
+ key <AC03> { [ d,          D,        Num_Lock,  Num_Lock    ] }; // d D δ Δ
+ key <AC04> { [ f,          F,        Escape,      Greek_phi ] }; // f F φ Φ
+ key <AC05> { [ g,          G,        Num_Lock,        grave ] }; // g G γ Γ
+ key <AC06> { [ h,          H,        Num_Lock,  Num_Lock    ] }; // h H η Η
+ key <AC07> { [ j,          J,        Left                   ] }; // j J ξ Ξ
+ key <AC08> { [ k,          K,        Down                   ] }; // k K κ Κ
+ key <AC09> { [ l,          L,        Right                  ] }; // l L λ h
+ key <AC10> { [ semicolon,  colon,    KP_Enter,    uparrow   ] }; // ; :   ↑
+ key <AC11> { [ apostrophe, quotedbl                         ] }; // ' " → ← rightarrow leftarrow
  
- key <AB01> { [ z,      Z,        Caps,           Greek_zeta     ] }; // z Z ζ Ζ
- key <AB02> { [ x,      X,        Home                             ] }; // x X   Χ
- key <AB03> { [ c,      C,        End                              ] }; // c C   Ψ
- key <AB04> { [ v,      V,        Caps,           Greek_omega    ] }; // v V ω Ω
- key <AB05> { [ b,      B,        Caps,           Greek_beta     ] }; // b B β Β
- key <AB06> { [ n,      N,        Caps,           Greek_nu       ] }; // n N ν Ν
- key <AB07> { [ m,      M,        Caps,           Greek_mu       ] }; // m M μ Μ
- key <AB08> { [ comma,  less,     guillemotleft,    Greek_lambda   ] }; // , < «
- key <AB09> { [ period, greater,  guillemotright                   ] }; // . > »
- key <AB10> { [ slash,  question, Escape                           ] }; // / ? 
+ key <AB01> { [ z,      Z,        Num_Lock,       Greek_zeta    ] }; // z Z ζ Ζ
+ key <AB02> { [ x,      X,        Home                          ] }; // x X   Χ
+ key <AB03> { [ c,      C,        End                           ] }; // c C   Ψ
+ key <AB04> { [ v,      V,        Num_Lock,       Greek_omega   ] }; // v V ω Ω
+ key <AB05> { [ b,      B,        Num_Lock,       Greek_beta    ] }; // b B β Β
+ key <AB06> { [ n,      N,        Num_Lock,       Greek_nu      ] }; // n N ν Ν
+ key <AB07> { [ m,      M,        Num_Lock,       Greek_mu      ] }; // m M μ Μ
+ key <AB08> { [ comma,  less,     guillemotleft,  Greek_lambda  ] }; // , < «
+ key <AB09> { [ period, greater,  guillemotright                ] }; // . > »
+ key <AB10> { [ slash,  question, Num_Lock                      ] }; // / ? 
 
  key <BKSL> { [ backslash, bar,   grave, asciitilde ] }; // \ | ` ~
  key <LSGT> { [ U230A,     U230B, U2308, U2309      ] }; // ⌊ ⌋ ⌈ ⌉
@@ -2004,7 +2004,7 @@ xkb_symbols "drix" {
 	key <AB05> {[ b,           B,              0x1002642,            0x10020bf             ]}; // b B ♂ ₿
 	key <AB06> {[ n,           N,              0x10026a5,            N                     ]}; // n N ⚥ N
 	key <AB07> {[ exclam,      question,       exclamdown,           questiondown          ]}; // ! ? ¡ ¿
-	key <AB08> {[ period,      comma,          0x1002026,            periodcentered        ]}; // . , … ·
+	key <AB08> {[ period,     Escape,          0x1002026,            periodcentered        ]}; // . , … ·
 	key <AB09> {[ colon,       semicolon,      grave,                acute                 ]}; // : ; ` ´
 	key <AB10> {[ slash,       backslash,      bar,                  brokenbar             ]}; // / \ | ¦
 

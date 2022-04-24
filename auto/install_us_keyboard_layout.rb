@@ -26,7 +26,7 @@ if  ([""] | yesses).include? gets.chomp then
    puts "backup placed in »".green + "#{`pwd`.chomp}/#{date}.us.bak".light_white + "«.".green
 end
 
-%x[cp ./x11_keyboard_layouts/us.new2 /usr/share/X11/xkb/symbols/us]
+%x[cp ./x11_keyboard_layouts/us.new /usr/share/X11/xkb/symbols/us]
 
 puts "Set keyboard layout to »" + "us".light_white + "« variant symbolic with mod4 set to capslock with the following command?"
 puts "       »" + "setxkbmap -layout us -option lv3:caps_switch -option keyboard:pointerkeys -variant symbolic".light_white + "«"
