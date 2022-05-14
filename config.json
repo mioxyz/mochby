@@ -1,8 +1,8 @@
 {
   "comment": "See linux/input-event-codes.h for key names (e.g. KEY_CAPSLOCK). keys »shell_command« and »virtual_keys« are mutually exclusive. Sequence matters. Setting »exclusive« to true will cause subsequent chords to be skipped (but all preceding chords will trigger).",
   "version_major": 1,
-  "version_increment": 29,
-  "version": "1.29.220424_1749.07dd104",
+  "version_increment": 54,
+  "version": "1.54.220514_0344.cb1142f",
   "shell_command_wrapper": {
     "comment": "adds prefix and suffix to each command (concats the three strings).",
     "prefix": "su -P -c \\\"export DISPLAY=:0;",
@@ -235,14 +235,15 @@
       "terminal_key": "KEY_H"
     },
     {
-      "shell_command": "i3-msg focus left",
+      "shell_command": "/home/ottoma/code/projects/i3-scripts/i3_cycle_windows.rb",
+      "old": "i3-msg focus left",
       "mod_keys": [
         "KEY_CAPSLOCK"
       ],
       "terminal_key": "KEY_N"
     },
     {
-      "shell_command": "/home/mio/code/projects/i3-scripts/i3_open_term_in_empty_workspace.rb",
+      "shell_command": "/home/ottoma/code/projects/i3-scripts/i3_open_term_in_empty_workspace.rb",
       "mod_keys": [
         "KEY_CAPSLOCK",
         "KEY_A"

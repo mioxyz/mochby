@@ -1,6 +1,6 @@
 #!/bin/ruby
 require 'open3'
-require_relative 'transpile_config'
+require_relative '../transpile_config'
 
 if !%x[whoami].chomp.eql? "root" then
    puts "you need to run this install-script as root."

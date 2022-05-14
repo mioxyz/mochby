@@ -3,8 +3,8 @@
 #include <array>
 #include <linux/input-event-codes.h>
 
-static const char* transpileTime = "2022-04-24 17:49:30";
-static const char* configVersion = "1.29.220424_1749.07dd104";
+static const char* transpileTime = "2022-05-14 03:44:51";
+static const char* configVersion = "1.54.220514_0344.cb1142f";
 
 // a list of all mod keys you plan on using (within mochby)
 static const unsigned short mod_keys[] = {
@@ -76,8 +76,8 @@ static const std::array<ChordMap, 25> cm = {{
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_U, keyPressed, false, {KEY_PAGEUP}, 1 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_H, keyPressed, false, {KEY_PAGEDOWN}, 1 },
    { "su -P -c \"export DISPLAY=:0;i3-msg focus down\" ottoma" , {KEY_CAPSLOCK}, 1, KEY_H, keyPressed, false },
-   { "su -P -c \"export DISPLAY=:0;i3-msg focus left\" ottoma" , {KEY_CAPSLOCK}, 1, KEY_N, keyPressed, false },
-   { "su -P -c \"export DISPLAY=:0;/home/mio/code/projects/i3-scripts/i3_open_term_in_empty_workspace.rb\" ottoma" , {KEY_CAPSLOCK, KEY_A}, 2, KEY_H, keyPressed, false }
+   { "su -P -c \"export DISPLAY=:0;/home/ottoma/code/projects/i3-scripts/i3_cycle_windows.rb\" ottoma" , {KEY_CAPSLOCK}, 1, KEY_N, keyPressed, false },
+   { "su -P -c \"export DISPLAY=:0;/home/ottoma/code/projects/i3-scripts/i3_open_term_in_empty_workspace.rb\" ottoma" , {KEY_CAPSLOCK, KEY_A}, 2, KEY_H, keyPressed, false }
 }};
 
 constexpr std::size_t chord_map_count = sizeof(cm) / sizeof(ChordMap);
