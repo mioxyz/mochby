@@ -14,8 +14,13 @@ end
 
 %x[ls -1 /dev/input/by-path/].split("\n").each do |dev|
    if dev.include? "-kbd" and fuzzyUnique(cmds, dev) then
-      cmds.push "/usr/local/bin/mod_chord_bypass/mod_chord_bypass /dev/input/by-path/#{dev}"
+      cmds.push "nohup /usr/local/bin/mod_chord_bypass/mod_chord_bypass /dev/input/by-path/#{dev} & disown $!;"
    end
 end
 
-%x[ #{cmds.join(" & ")} ]
+# %x[ #{cmds.join(" & ")} ]
+
+cmds.each { |cmd|
+   %x(#{cmd})
+
+}

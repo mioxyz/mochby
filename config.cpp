@@ -3,8 +3,8 @@
 #include <array>
 #include <linux/input-event-codes.h>
 
-static const char* transpileTime = "2022-05-14 03:44:51";
-static const char* configVersion = "1.54.220514_0344.cb1142f";
+static const char* transpileTime = "2022-07-27 10:55:53";
+static const char* configVersion = "1.81.220727_1055.37ce036";
 
 // a list of all mod keys you plan on using (within mochby)
 static const unsigned short mod_keys[] = {
