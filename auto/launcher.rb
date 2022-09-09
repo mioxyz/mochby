@@ -5,7 +5,7 @@ cmds = []
 
 def fuzzyUnique(haystack, needle)
    haystack.each do |other|
-		if Float(%x[fstrcmp \"#{needle}\" \"#{other}\"]) < 0.95  then
+      if Float(%x[fstrcmp \"#{needle}\" \"#{other}\"]) < 0.95  then
          return false
       end
    end
