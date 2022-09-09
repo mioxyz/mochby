@@ -1,7 +1,5 @@
 # mochby
-Mod-Chord-Bypass or "mochby" intercepts raw key-presses from a keyboard device and triggers an action if a set of user defined keys have been depressed in unison. This allows for a different input style more akin to playing chords on a piano, in contrast to toggled systems 
-
-. This absolute botch of an application allows us to bypass the window manager completely, by reading directly from `/dev/path-to-keyboard-device` and proceeding to do whatever we want, which may or mayn't be a very good idea. Despite it's scariness, I do like this thing for it's zero-flips-given-naturedness.
+Mod-Chord-Bypass or "mochby" intercepts raw key-presses from a keyboard device and triggers an action if a set of user defined keys have been depressed in unison. This allows for a different input style more akin to playing chords on a piano, in contrast to toggled systems. In turn, this allows us to bypass the window manager completely, by reading directly from `/dev/path-to-keyboard-device` and proceeding to do whatever we want, which may or may not be a good idea.
 
 ## Setup & Install
 Edit the `config.json` to fit your needs, then run `sudo ./auto/install_full.rb` which will first transpile the `config.json` into `config.cpp` and will then build and install mod-chord-bypass on your machine. 
