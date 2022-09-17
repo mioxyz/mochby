@@ -1,12 +1,12 @@
 {
   "comment": "See linux/input-event-codes.h for key names (e.g. KEY_CAPSLOCK). keys »shell_command« and »virtual_keys« are mutually exclusive. Sequence matters. Setting »exclusive« to true will cause subsequent chords to be skipped (but all preceding chords will trigger).",
   "version_major": 1,
-  "version_increment": 81,
-  "version": "1.81.220727_1055.37ce036",
+  "version_increment": 87,
+  "version": "1.87.220902_1100.8f7ac25",
   "shell_command_wrapper": {
     "comment": "adds prefix and suffix to each command (concats the three strings).",
     "prefix": "su -P -c \\\"export DISPLAY=:0;",
-    "suffix": "\\\" ottoma"
+    "suffix": "\\\" mio"
   },
   "chord_maps": [
     {

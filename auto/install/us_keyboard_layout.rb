@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/ruby
 require 'open3'
 require 'colorize'
 
@@ -62,3 +62,4 @@ else
 end
 
 puts "All done."
+

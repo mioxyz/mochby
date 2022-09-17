@@ -8,19 +8,9 @@ if !%x[whoami].chomp.eql? "root" then
 end
 
 # check in which folder we are
-puts "before if..."
 if "mochby" != %x[pwd].chomp.split("/").last then
    puts "run this script in the main directory."
    exit 0
-end
-
-puts "transpile config (config.json is transpiled into config.cpp and will overwrite config.cpp)? ? [Y/n]"
-yesses = ["y", "Y", "yes", "Yes", 1, "j", "ja", "yolo", ""]
-if yesses.include? gets.chomp then
-   print " ...yes."
-   transpileConfig()
-else
-   puts "nope."
 end
 
 %x[mkdir -p ./bin ]
@@ -38,11 +28,9 @@ end
 maybeService=%[systemctl list-units --full -all | grep "mod-chord-bypass.service"]
 if 0 < maybeService.length then
    %x[systemctl stop mod-chord-bypass]
-else
-   puts "it seems like this is the first time you are installing mod-chord-bypass, skipping the part where the old service is disabled."
 end
 
-%x[killall mod_chord_bypass]
+%x[killall mod_chord_bypass &> /dev/null]
 %x[mkdir -p /usr/local/bin/mod_chord_bypass]
 
 stdout, stderr, status = Open3.capture3 "install ./bin/mod_chord_bypass /usr/local/bin/mod_chord_bypass/mod_chord_bypass"
@@ -51,7 +39,7 @@ if status.success?
    puts stdout
 else
    puts stderr
-   puts "ERROR: installing mod_chord_bypass to /usr/local/bin/mod_chord_bypass unsuccessful. servie has been disabled, you need to manually restart it."
+   puts "ERROR: installing mod_chord_bypass to /usr/local/bin/mod_chord_bypass unsuccessful. service has been disabled, you need to manually restart it."
    exit 0
 end
 
@@ -77,24 +65,15 @@ else
 end
 
 %x[systemctl daemon-reload; systemctl start mod-chord-bypass; sleep 1; systemctl status mod-chord-bypass];
+%x[xset r rate 152 44]
 
-puts "show service status? [Y/n]"
-yesses = ["y", "Y", "yes", "Yes", 1, "j", "ja", "yolo", ""]
-if yesses.include? gets.chomp then
-   print " ...yes."
-   system "systemctl status mod-chord-bypass"
-else
-   puts "nope."
+sleep(1);
+stdout, stderr, status = Open3.capture3 "setxkbmap -layout us -option lv3:caps_switch -option keyboard:pointerkeys -variant symbolic"
+
+if !status.success?
+      puts "!!! ".red + "WARNING WARNING WARNING".yellow + " !!!".red
+      puts "setxkbmap failed with message: »" + stderr.to_s().chomp().yellow + "«"
+      puts "ERROR: something seems to be wrong with the keyboard layout! You need to manually copy a backup of the us symbols file onto /usr/share/X11/xkb/symbols/us immediately, or your keyboard will not work at reboot if this specific layout is loaded.".red
 end
 
-puts "Set keyboard repeat rate and repeat delay to ass-blazing-fast mode (with the following command)?"
-puts "      »xset r rate 152 44«"
-puts "[y/N] "
-
-if  yesses.include? gets.chomp then
-   print " ...yes."
-   %x[xset r rate 152 44]
-else
-   puts "nope."
-end
-
+#%x[setxkbmap -layout us -option lv3:caps_switch -option keyboard:pointerkeys -variant symbolic]

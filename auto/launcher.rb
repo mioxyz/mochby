@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/ruby
 # requires fstrcmp to be installed.
 
 cmds = []
