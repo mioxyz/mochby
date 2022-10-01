@@ -82,29 +82,29 @@ xkb_symbols "ibm238l" {
 };
 
 
-partial alphanumeric_keys 
-xkb_symbols "intl" {      
-    include "us(basic)"   
-    name[Group1]= "English (US, intl., with dead keys)";    
-    key <TLDE> { [ grave,       tilde,         KP_Enter,       asciitilde ] };      
-    key <AE01> { [     1,          exclam,    exclamdown,      onesuperior ] };     
-    key <AE02> { [     2,              at,   twosuperior, dead_doubleacute ] };     
-    key <AE03> { [     3,      numbersign, threesuperior,      dead_macron ] };     
-    key <AE04> { [     4,          dollar,      currency,         sterling ] };     
-    key <AE05> { [     5,         percent,      EuroSign,     dead_cedilla ] };     
-    key <AE06> { [     6, asciicircum,    onequarter,      asciicircum ] };         
-    key <AE07> { [     7,       ampersand,       onehalf,        dead_horn ] };     
+partial alphanumeric_keys
+xkb_symbols "intl" {
+    include "us(basic)"
+    name[Group1]= "English (US, intl., with dead keys)";
+    key <TLDE> { [ grave,       tilde,         KP_Enter,       asciitilde ] };
+    key <AE01> { [     1,          exclam,    exclamdown,      onesuperior ] };
+    key <AE02> { [     2,              at,   twosuperior, dead_doubleacute ] };
+    key <AE03> { [     3,      numbersign, threesuperior,      dead_macron ] };
+    key <AE04> { [     4,          dollar,      currency,         sterling ] };
+    key <AE05> { [     5,         percent,      EuroSign,     dead_cedilla ] };
+    key <AE06> { [     6, asciicircum,    onequarter,      asciicircum ] };
+    key <AE07> { [     7,       ampersand,       onehalf,        dead_horn ] };
     key <AE08> { [     8,        asterisk, threequarters,      dead_ogonek ] };
     key <AE09> { [     9,       parenleft,  leftsinglequotemark,     dead_breve ] };
     key <AE10> { [     0,      parenright, rightsinglequotemark, dead_abovering ] };
-    key <AE11> { [     minus,  underscore,           yen,    dead_belowdot ] };     
-    key <AE12> { [     equal,        plus,      multiply,         division ] };       
+    key <AE11> { [     minus,  underscore,           yen,    dead_belowdot ] };
+    key <AE12> { [     equal,        plus,      multiply,         division ] };
     key <AC01> { [   a,        A,    adiaeresis,       Aacute ] };
     key <AB05> { [   b,        B,             b,            B ] };
     key <AB03> { [   c,        C,           End,         cent ] };
     key <AC03> { [   d,        D,           eth,          ETH ] };
     key <AD03> { [   e,        E,      asterisk,       Eacute ] };
-    key <AC04> { [   f,        F,        Escape,            F ] };          
+    key <AC04> { [   f,        F,        Escape,            F ] };
     key <AC05> { [   g,        G,             g,            G ] };
     key <AC06> { [   h,        H,             h,            H ] };
     key <AD08> { [   i,        I,            Up, greek_lambda ] };
@@ -116,9 +116,9 @@ xkb_symbols "intl" {
     key <AD09> { [   o,        O,        Delete,       Oacute ] };
     key <AD10> { [   p,        P,    odiaeresis,   Odiaeresis ] };
     key <AD01> { [   q,        Q,    adiaeresis,   Adiaeresis ] };
-    key <AD04> { [   r,        R,         equal,   registered ] };          
+    key <AD04> { [   r,        R,         equal,   registered ] };
     key <AC02> { [   s,        S,        ssharp,      section ] };
-    key <AD05> { [   t,        T,         thorn,        THORN ] };          
+    key <AD05> { [   t,        T,         thorn,        THORN ] };
     key <AD07> { [   u,        U,     Backspace,       Uacute ] };
     key <AB04> { [   v,        V,             v,            V ] };
     key <AD02> { [   w,        W,   asciicircum,        Aring ] };
@@ -127,17 +127,17 @@ xkb_symbols "intl" {
     key <AB01> { [   z,        Z,            ae,           AE ] };
 
     key <AD11> { [ bracketleft,  braceleft,  guillemotleft, leftdoublequotemark ] };
-    key <AD12> { [bracketright, braceright, guillemotright, rightdoublequotemark ] };    
-    key <AC10> { [ semicolon,      colon, KP_Enter,           degree ] };           
-    key <AC11> { [ apostrophe, quotedbl, apostrophe,    quotedbl ] };               
-  
-    key <AB08> { [     comma,       less,      ccedilla,         Ccedilla ] };      
-    key <AB09> { [    period,    greater, dead_abovedot,       dead_caron ] };      
-    key <AB10> { [     slash,   question,  questiondown,        dead_hook ] };      
-    key <BKSL> { [ backslash,        bar,       notsign,        brokenbar ] };       
-		 
-    key <LSGT> { [ backslash,   bar,            backslash,      bar ] };            
-  
+    key <AD12> { [bracketright, braceright, guillemotright, rightdoublequotemark ] };
+    key <AC10> { [ semicolon,      colon, KP_Enter,           degree ] };
+    key <AC11> { [ apostrophe, quotedbl, apostrophe,    quotedbl ] };
+
+    key <AB08> { [     comma,       less,      ccedilla,         Ccedilla ] };
+    key <AB09> { [    period,    greater, dead_abovedot,       dead_caron ] };
+    key <AB10> { [     slash,   question,  questiondown,        dead_hook ] };
+    key <BKSL> { [ backslash,        bar,       notsign,        brokenbar ] };
+
+    key <LSGT> { [ backslash,   bar,            backslash,      bar ] };
+
     include "level3(ralt_switch)"
 };
 
@@ -1537,7 +1537,7 @@ xkb_symbols "carpalx-full-altgr-intl" {
 
 // US Symbolic (mio edit)
 // assumes the use of mod_chord_bypass (mochby) application
-// the »Escape« symbol name is used in many places of the mod4 row as to allow mochby to 
+// the »Escape« symbol name is used in many places of the mod4 row as to allow mochby to
 // override the key (i.e. execute stuff). This way one can still have a symbol on mod5 which is not created by MDB.
 // original Author: Daniele Baisero <daniele.baisero@gmail.com>
 // Based on the default keyboard map from 'symbols/us', edited for scientific literature.
@@ -1562,6 +1562,8 @@ xkb_symbols "symbolic" {
  key <AE10> { [ 0,     parenright,  zerosuperior,  degree         ] }; // 0 ) ⁰ °
  key <AE11> { [ minus, underscore,  notequal,      underscore     ] }; // - _ ≠ ±
  key <AE12> { [ equal, plus,        multiply,      division       ] }; // = + × ÷
+ key <BKSP> { [ BackSpace, BackSpace, BackSpace                   ] };
+
  #U2200 upsidedown A
 // replacing all "Escape" with "Caps" to prevent from sending esc to windows.
  key <AD01> { [ q,            Q,          Num_Lock     , asciicircum   ] }; // q Q ∀ ∃
@@ -1581,15 +1583,15 @@ xkb_symbols "symbolic" {
  key <AC01> { [ a,          A,        Num_Lock               ] }; // a A   Α
  key <AC02> { [ s,          S,        Num_Lock,  ssharp      ] }; // s S   Σ
  key <AC03> { [ d,          D,        Num_Lock,  Num_Lock    ] }; // d D δ Δ
- key <AC04> { [ f,          F,        Escape,      Greek_phi ] }; // f F φ Φ
- key <AC05> { [ g,          G,        Num_Lock,        grave ] }; // g G γ Γ
+ key <AC04> { [ f,          F,        Escape,    Greek_phi   ] }; // f F φ Φ
+ key <AC05> { [ g,          G,        Num_Lock,  grave       ] }; // g G γ Γ
  key <AC06> { [ h,          H,        Num_Lock,  Num_Lock    ] }; // h H η Η
  key <AC07> { [ j,          J,        Left                   ] }; // j J ξ Ξ
  key <AC08> { [ k,          K,        Down                   ] }; // k K κ Κ
  key <AC09> { [ l,          L,        Right                  ] }; // l L λ h
  key <AC10> { [ semicolon,  colon,    KP_Enter,    uparrow   ] }; // ; :   ↑
  key <AC11> { [ apostrophe, quotedbl                         ] }; // ' " → ← rightarrow leftarrow
- 
+
  key <AB01> { [ z,      Z,        Num_Lock,       Greek_zeta    ] }; // z Z ζ Ζ
  key <AB02> { [ x,      X,        Num_Lock,       Home          ] }; // x X   Χ
  key <AB03> { [ c,      C,        Num_Lock,       End           ] }; // c C   Ψ
@@ -1599,7 +1601,7 @@ xkb_symbols "symbolic" {
  key <AB07> { [ m,      M,        Num_Lock,       Greek_mu      ] }; // m M μ Μ
  key <AB08> { [ comma,  less,     guillemotleft,  Greek_lambda  ] }; // , < «
  key <AB09> { [ period, greater,  guillemotright                ] }; // . > »
- key <AB10> { [ slash,  question, Num_Lock                      ] }; // / ? 
+ key <AB10> { [ slash,  question, Num_Lock                      ] }; // / ?
 
  key <BKSL> { [ backslash, bar,   grave, asciitilde ] }; // \ | ` ~
  key <LSGT> { [ U230A,     U230B, U2308, U2309      ] }; // ⌊ ⌋ ⌈ ⌉
@@ -1903,7 +1905,7 @@ xkb_symbols "3l-cros" {
     };
 };
 
-// A 3l variant for emacs users, which maps control to caps lock and (re)maps 
+// A 3l variant for emacs users, which maps control to caps lock and (re)maps
 // tab back to tab.
 partial modifier_keys
 xkb_symbols "3l-emacs" {
