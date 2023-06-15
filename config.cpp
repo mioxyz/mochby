@@ -3,8 +3,8 @@
 #include <array>
 #include <linux/input-event-codes.h>
 
-static const char* transpileTime = "2022-10-01 22:42:21";
-static const char* configVersion = "1.94.221001_2242.e6d9313";
+static const char* transpileTime = "2023-06-15 01:29:55";
+static const char* configVersion = "1.111.230615_0129.c60bd87";
 
 // a list of all mod keys you plan on using (within mochby)
 static const unsigned short mod_keys[] = {
@@ -52,32 +52,33 @@ static const std::array<int,  10> virtualKeys = {
 };
 
 // TODO change to vector
-static const std::array<ChordMap, 25> cm = {{
-   { "su -P -c \"export DISPLAY=:0;rofi -show window\" mio" , {KEY_CAPSLOCK}, 1, KEY_G, keyPressed, true },
+static const std::array<ChordMap, 26> cm = {{
+   { "su -c \"export DISPLAY=:0;sleep 0.1; xdotool key 'Super+F1'\" mio" , {KEY_CAPSLOCK}, 1, KEY_F1, keyPressed, true },
+   { "su -c \"export DISPLAY=:0;rofi -show window\" mio" , {KEY_CAPSLOCK}, 1, KEY_G, keyPressed, true },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_O, keyPressed, true, {KEY_LEFTCTRL, KEY_DELETE}, 2 },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_X, keyPressed, true, {KEY_LEFTSHIFT, KEY_HOME}, 2 },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_C, keyPressed, true, {KEY_LEFTSHIFT, KEY_END}, 2 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_X, keyPressed, true, {KEY_HOME}, 1 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_C, keyPressed, true, {KEY_END}, 1 },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'Ö'\" mio" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_9, keyPressed, true },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'ö'\" mio" , {KEY_CAPSLOCK}, 1, KEY_9, keyPressed, true },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'Ü'\" mio" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_7, keyPressed, true },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'ü'\" mio" , {KEY_CAPSLOCK}, 1, KEY_7, keyPressed, true },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'Ä'\" mio" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_8, keyPressed, true },
-   { "su -P -c \"export DISPLAY=:0;xdotool type 'ä'\" mio" , {KEY_CAPSLOCK}, 1, KEY_8, keyPressed, true },
+   { "su -c \"export DISPLAY=:0;xdotool type 'Ö'\" mio" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_9, keyPressed, true },
+   { "su -c \"export DISPLAY=:0;xdotool type 'ö'\" mio" , {KEY_CAPSLOCK}, 1, KEY_9, keyPressed, true },
+   { "su -c \"export DISPLAY=:0;xdotool type 'Ü'\" mio" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_7, keyPressed, true },
+   { "su -c \"export DISPLAY=:0;xdotool type 'ü'\" mio" , {KEY_CAPSLOCK}, 1, KEY_7, keyPressed, true },
+   { "su -c \"export DISPLAY=:0;xdotool type 'Ä'\" mio" , {KEY_CAPSLOCK, KEY_S}, 2, KEY_8, keyPressed, true },
+   { "su -c \"export DISPLAY=:0;xdotool type 'ä'\" mio" , {KEY_CAPSLOCK}, 1, KEY_8, keyPressed, true },
    { nullptr, {KEY_CAPSLOCK, KEY_LEFTSHIFT, KEY_A}, 3, KEY_J, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFTSHIFT, KEY_LEFT}, 3 },
    { nullptr, {KEY_CAPSLOCK, KEY_LEFTSHIFT, KEY_A}, 3, KEY_L, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFTSHIFT, KEY_RIGHT}, 3 },
-   { "su -P -c \"export DISPLAY=:0;xdotool key 'BackSpace'; xdotool type '_'\" mio" , {KEY_CAPSLOCK}, 1, KEY_SPACE, keyPressed, false },
+   { "su -c \"export DISPLAY=:0;xdotool key 'BackSpace'; xdotool type '_'\" mio" , {KEY_CAPSLOCK}, 1, KEY_SPACE, keyPressed, false },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_J, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFT}, 2 },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_L, keyPressed, false, {KEY_LEFTCTRL, KEY_RIGHT}, 2 },
-   { "su -P -c \"export DISPLAY=:0;i3-msg 'workspace prev'\" mio" , {KEY_CAPSLOCK}, 1, KEY_Q, keyPressed, false },
-   { "su -P -c \"export DISPLAY=:0;i3-msg 'workspace next'\" mio" , {KEY_CAPSLOCK}, 1, KEY_D, keyPressed, false },
+   { "su -c \"export DISPLAY=:0;i3-msg 'workspace prev'\" mio" , {KEY_CAPSLOCK}, 1, KEY_Q, keyPressed, false },
+   { "su -c \"export DISPLAY=:0;i3-msg 'workspace next'\" mio" , {KEY_CAPSLOCK}, 1, KEY_D, keyPressed, false },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_F, keyPressed, false, {KEY_ESC}, 1 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_U, keyPressed, false, {KEY_PAGEUP}, 1 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_H, keyPressed, false, {KEY_PAGEDOWN}, 1 },
-   { "su -P -c \"export DISPLAY=:0;i3-msg focus down\" mio" , {KEY_CAPSLOCK}, 1, KEY_H, keyPressed, false },
-   { "su -P -c \"export DISPLAY=:0;/home/ottoma/code/projects/i3-scripts/i3_cycle_windows.rb\" mio" , {KEY_CAPSLOCK}, 1, KEY_N, keyPressed, false },
-   { "su -P -c \"export DISPLAY=:0;/home/ottoma/code/projects/i3-scripts/i3_open_term_in_empty_workspace.rb\" mio" , {KEY_CAPSLOCK, KEY_A}, 2, KEY_H, keyPressed, false }
+   { "su -c \"export DISPLAY=:0;i3-msg focus down\" mio" , {KEY_CAPSLOCK}, 1, KEY_H, keyPressed, false },
+   { "su -c \"export DISPLAY=:0;/home/ottoma/code/projects/i3-scripts/i3_cycle_windows.rb\" mio" , {KEY_CAPSLOCK}, 1, KEY_N, keyPressed, false },
+   { "su -c \"export DISPLAY=:0;/home/ottoma/code/projects/i3-scripts/i3_open_term_in_empty_workspace.rb\" mio" , {KEY_CAPSLOCK, KEY_A}, 2, KEY_H, keyPressed, false }
 }};
 
 constexpr std::size_t chord_map_count = sizeof(cm) / sizeof(ChordMap);

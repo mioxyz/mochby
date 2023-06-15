@@ -21,7 +21,7 @@ def transpileChordMapLine(chord_map, config)
       chord_map.trigger = "keyPressed";
    end
    chord_map.exclusive = ((not chord_map.exclusive.nil?) and chord_map.exclusive);
-   # chord_map.exclusive = ((not chord_map&.exclusive&.nil?) and config.exclusive);   
+   # chord_map.exclusive = ((not chord_map&.exclusive&.nil?) and config.exclusive);
 
    if(chord_map.shell_command) then
       if config.shell_command_wrapper and (chord_map&.ignore_shell_command_wrap&.nil? or (not config.ignore_shell_command_wrap)) then
@@ -58,11 +58,11 @@ def transpileConfig
 
    template = File.open("#{$working_directory}/config.template.cpp", "rb").read
 
-   version = [ 
-      config.version_major.to_s, 
+   version = [
+      config.version_major.to_s,
       (config.version_increment + 1).to_s,
-      Time.now.strftime('%y%m%d_%H%M'), 
-      %x(git log -1 --pretty=format:%h) 
+      Time.now.strftime('%y%m%d_%H%M'),
+      %x(git log -1 --pretty=format:%h)
    ].join(".");
 
    template.sub!( '/*%__VIRTUAL_KEYS_COUNT__%*/0/*%_KEEP_ZERO_%*/', virtual_keys.count.to_s );
@@ -86,3 +86,4 @@ end
 if ARGV[0] == 'run' then
    transpileConfig();
 end
+

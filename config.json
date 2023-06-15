@@ -1,14 +1,22 @@
 {
   "comment": "See linux/input-event-codes.h for key names (e.g. KEY_CAPSLOCK). keys »shell_command« and »virtual_keys« are mutually exclusive. Sequence matters. Setting »exclusive« to true will cause subsequent chords to be skipped (but all preceding chords will trigger).",
   "version_major": 1,
-  "version_increment": 94,
-  "version": "1.94.221001_2242.e6d9313",
+  "version_increment": 111,
+  "version": "1.111.230615_0129.c60bd87",
   "shell_command_wrapper": {
     "comment": "adds prefix and suffix to each command (concats the three strings).",
-    "prefix": "su -P -c \\\"export DISPLAY=:0;",
+    "prefix": "su -c \\\"export DISPLAY=:0;",
     "suffix": "\\\" mio"
   },
   "chord_maps": [
+    {
+      "shell_command": "sleep 0.1; xdotool key 'Super+F1'",
+      "mod_keys": [
+        "KEY_CAPSLOCK"
+      ],
+      "terminal_key": "KEY_F1",
+      "exclusive": true
+    },
     {
       "shell_command": "rofi -show window",
       "mod_keys": [

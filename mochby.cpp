@@ -15,6 +15,11 @@
 
 // #define DEBUG_PRINT
 
+#define die(str, args...) do { \
+    perror(str); \
+    exit(EXIT_FAILURE); \
+} while(0)
+
 void emit(int fd, int type, int code, int val)
 {
    struct input_event ie;
@@ -28,55 +33,68 @@ void emit(int fd, int type, int code, int val)
    write(fd, &ie, sizeof(ie));
 }
 
-int main(int argc, char** argv )
-{
+
+int initializeUinput() {
+   struct uinput_setup usetup;
+   int fileHandle = open("/dev/uinput", O_WRONLY | O_NONBLOCK);
+
+   if(fileHandle < 0) 
+      die("error: open");
+
+   ioctl(fileHandle, UI_SET_EVBIT, EV_KEY);
+
+   for(auto& key : virtualKeys)
+      ioctl(fileHandle, UI_SET_KEYBIT, key);
+   
+   memset(&usetup, 0, sizeof(usetup));
+   usetup.id.bustype = BUS_USB;
+   usetup.id.vendor = 0x1911;
+   usetup.id.product = 0x1911;
+   strcpy(usetup.name, "Mod Chord Bypass");
+
+   if(ioctl(fileHandle, UI_DEV_SETUP, &usetup) < 0) die("error: ioctl");
+
+   int uiDevCreateReturnCode = ioctl(fileHandle, UI_DEV_CREATE);
+
+   if(uiDevCreateReturnCode < 0)
+      die("error: ioctl");
+
+   return fileHandle;
+}
+
+int main(int argc, char** argv) {
    fprintf(stdout, "transpile time: %s,\nconfig version: %s\nmod-keys: [", transpileTime, configVersion);
-   for(int k = 0; k < mod_key_count; ++k) fprintf(stdout, "%d, ", mod_keys[k]);
+
+   for(int k = 0; k < mod_key_count; ++k)
+      fprintf(stdout, "%d, ", mod_keys[k]);
+
    fprintf(stdout, "] mod-key-count: »%d«", mod_key_count);
 
-   int fd = open("/dev/uinput", O_WRONLY | O_NONBLOCK);
-   struct uinput_setup usetup;
-   sleep(1);
-   auto errCode = ioctl(fd, UI_SET_EVBIT, EV_KEY);
-   ioctl(fd, UI_SET_KEYBIT, KEY_SPACE);
-   ioctl(fd, UI_SET_KEYBIT, KEY_A);
-   for(auto& key : virtualKeys) {
-      ioctl(fd, UI_SET_KEYBIT, key);
-   }
-   memset(&usetup, 0, sizeof(usetup));
-   strcpy(usetup.name, "Mochby Keyboard");
-   usetup.id.bustype = BUS_USB;
-   usetup.id.vendor  = 0x0777;  // vendor
-   usetup.id.product = 0x0777; // product
-   ioctl(fd, UI_DEV_SETUP, &usetup);
-   ioctl(fd, UI_DEV_CREATE);
+   int fileHandle_uinput = initializeUinput();
 
-   char* dev = argv[1];
+   sleep(1);
+
+   char* devicePath = argv[1];
    bool mod_key_state[255] = {false};
 
    struct input_event inputEvent;
-   ssize_t n;
-   int raw;
-   raw = open(dev, O_RDONLY);
+   ssize_t charactersRead;
 
-   if(raw == -1)
-   {
-      fprintf(stderr, "Cannot open %s: %s.\n", dev, strerror(errno));
+   int fileHandle_keyboardInput = open(devicePath, O_RDONLY);
+
+   if(fileHandle_keyboardInput == -1) {
+      fprintf(stderr, "Cannot open %s: %s.\n", devicePath, strerror(errno));
       return EXIT_FAILURE;
    }
 
 LOOP:
    do {
-      n = read(raw, &inputEvent, sizeof inputEvent);
-      if(n == (ssize_t)-1)
-      {
-         if (errno == EINTR)
-            continue;
-         else
-            break;
-      }
-      else if (n != sizeof inputEvent)
-      {
+      charactersRead = read(fileHandle_keyboardInput, &inputEvent, sizeof inputEvent);
+
+      if(charactersRead == (ssize_t)-1) {
+         if(errno == EINTR)
+            continue; else break;
+      } else if (charactersRead != sizeof inputEvent) {
          errno = EIO;
       }
 
@@ -116,8 +134,8 @@ LOOP:
 #ifdef DEBUG_PRINT
                      fprintf(stdout, "\n\npressing VIRT key: %d", cm[k].virtual_keys[i]);
 #endif
-                     emit(fd, EV_KEY, cm[k].virtual_keys[i], 0);
-                     emit(fd, EV_SYN, SYN_REPORT, 0);
+                     emit(fileHandle_uinput, EV_KEY, cm[k].virtual_keys[i], 0);
+                     emit(fileHandle_uinput, EV_SYN, SYN_REPORT, 0);
                   }
                }
 
@@ -141,10 +159,10 @@ LOOP:
 #ifdef DEBUG_PRINT
                         fprintf(stdout, "\nreleasing key: %d", cm[k].virtual_keys[i]);
 #endif
-                        emit(fd, EV_KEY, cm[k].virtual_keys[i], 1);
-                        emit(fd, EV_SYN, SYN_REPORT, 0);
+                        emit(fileHandle_uinput, EV_KEY, cm[k].virtual_keys[i], 1);
+                        emit(fileHandle_uinput, EV_SYN, SYN_REPORT, 0);
                      }
-                  }else{
+                  } else {
 #ifdef DEBUG_PRINT
                         if(nullptr != cm[k].system_command) fprintf(stderr, "\nchord matches, exec SYSTEM CMD: »%s«", cm[k].system_command);
 #endif

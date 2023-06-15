@@ -1580,7 +1580,8 @@ xkb_symbols "symbolic" {
  key <AD12> { [ bracketright, braceright, Num_Lock                     ] }; // ] } ⊂ ⊃
 
 // sadly, NoSymbol will cause the last valid symbol to be printed, so this is basically useless...
- key <AC01> { [ a,          A,        Num_Lock               ] }; // a A   Α
+// something seems to have changed in the kernel, and NoSymbol now seems to work?
+ key <AC01> { [ a,          A,        Num_Lock,  Num_Lock    ] }; // a A   Α
  key <AC02> { [ s,          S,        Num_Lock,  ssharp      ] }; // s S   Σ
  key <AC03> { [ d,          D,        Num_Lock,  Num_Lock    ] }; // d D δ Δ
  key <AC04> { [ f,          F,        Escape,    Greek_phi   ] }; // f F φ Φ
@@ -1594,7 +1595,7 @@ xkb_symbols "symbolic" {
 
  key <AB01> { [ z,      Z,        Num_Lock,       Greek_zeta    ] }; // z Z ζ Ζ
  key <AB02> { [ x,      X,        Num_Lock,       Home          ] }; // x X   Χ
- key <AB03> { [ c,      C,        Num_Lock,       End           ] }; // c C   Ψ
+ key <AB03> { [ c,      C,        NoSymbol,       End           ] }; // c C   Ψ
  key <AB04> { [ v,      V,        Num_Lock,       Greek_omega   ] }; // v V ω Ω
  key <AB05> { [ b,      B,        Num_Lock,       Greek_beta    ] }; // b B β Β
  key <AB06> { [ n,      N,        Num_Lock,       Greek_nu      ] }; // n N ν Ν
