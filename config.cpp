@@ -39,6 +39,8 @@ static const char* const evval[3] = {
 };
 
 #define PASSTHROUGH_MODE 1
+#define WINDOWS_MODE 1
+
 
 #ifdef PASSTHROUGH_MODE
 static const std::array<int,  112> virtualKeys = {
@@ -175,7 +177,7 @@ static const std::array<int,  12> virtualKeys = {
 // TODO change to vector
 static const std::array<ChordMap, 
 #ifdef PASSTHROUGH_MODE
-33
+34
 #elif
 28
 #endif
@@ -200,8 +202,13 @@ static const std::array<ChordMap,
    { "su -c \"export DISPLAY=:0;xdotool key 'BackSpace'; xdotool type '_'\" mio" , {KEY_CAPSLOCK}, 1, KEY_SPACE, keyPressed, false },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_J, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFT}, 2 },
    { nullptr, {KEY_CAPSLOCK, KEY_A}, 2, KEY_L, keyPressed, false, {KEY_LEFTCTRL, KEY_RIGHT}, 2 },
+#ifdef WINDOWS_MODE
+   { nullptr , {KEY_CAPSLOCK}, 1, KEY_Q, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFTMETA, KEY_LEFT}, 3 },
+   { nullptr , {KEY_CAPSLOCK}, 1, KEY_D, keyPressed, false, {KEY_LEFTCTRL, KEY_LEFTMETA, KEY_RIGHT}, 3 },
+#elif
    { "su -c \"export DISPLAY=:0;i3-msg 'workspace prev'\" mio" , {KEY_CAPSLOCK}, 1, KEY_Q, keyPressed, false },
    { "su -c \"export DISPLAY=:0;i3-msg 'workspace next'\" mio" , {KEY_CAPSLOCK}, 1, KEY_D, keyPressed, false },
+#endif
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_F, keyPressed, false, {KEY_ESC}, 1 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_U, keyPressed, false, {KEY_PAGEUP}, 1 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_H, keyPressed, false, {KEY_PAGEDOWN}, 1 },
@@ -213,7 +220,8 @@ static const std::array<ChordMap,
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_K, keyPressed, true, {KEY_DOWN}, 1 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_I, keyPressed, true, {KEY_UP}, 1 },
    { nullptr, {KEY_CAPSLOCK}, 1, KEY_L, keyPressed, true, {KEY_RIGHT}, 1 },
-   { nullptr, {KEY_CAPSLOCK}, 1, KEY_SEMICOLON, keyPressed, true, {KEY_ENTER}, 1 }
+   { nullptr, {KEY_CAPSLOCK}, 1, KEY_SEMICOLON, keyPressed, true, {KEY_ENTER}, 1 },
+   { nullptr, {KEY_CAPSLOCK}, 1, KEY_O, keyPressed, true, {KEY_DELETE}, 1 }
 #endif
 }};
 
