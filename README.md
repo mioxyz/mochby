@@ -33,6 +33,17 @@ A **chord_map** can also have a **trigger** key, which is by default **keyPresse
 
 Editing the generated `config.cpp` file directly is no longer necessary.
 
+
+### Passthrough Mode
+Mochby has a mode in which the physical keyboard is made invisible for the current X session and all Keyboard presses are passed through to the virtual keyboard. The reason you might want to do that is for Applications such as Remmina, VirtualBox or all of the IntelliJ products, which ignore the virtual keyboard as long as there is a physical slave keyboard available to it or do even less predicatble things. By 'floating' the physical keyboard you can have the virtual keyboard press exactly those keys you want to be pressed at any given point. 
+To do this enable the `PASSTHROUGH_MODE`. I haven't modified the ruby transpiler script to account for this mode, so you'll have to edit the cpp by hand. I would not recommend installing mochby as a service with PASSTHROUGH_MODE enabled, though since there are some drawbacks.
+Instead, disable the service when you need `PASSTHROUGH_MODE`, and run:
+```
+xinput float <physical-keyboard-slave-id> ; sudo g++ -std=c++20 mochby.cpp config.cpp -o ./bin/mod_chord_bypass && sudo ./bin/mod_chord_bypass /dev/input/by-path/,<your-physical-keyboard-device>; xinput reattach <physical-keyboard-slave-id> <master-id>
+```
+I do this when I use Remmina RDP client. The `xinput reattach` command reenables your keyboard device. Be careful, you can easily render all input devices useless when floating physical keyboards. You can figure out the physical keyboard's slave-id by running `xinput list`.
+You can also run something like: `xinput float 9; sleep 60; xinput reattach 9 3` for testing.
+
 ### Requirements
 You'll need the following ruby gems: OpenSturct (`ostruct`), `colorize` and `json`. A C compiler is also necessary.
 

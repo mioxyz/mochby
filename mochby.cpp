@@ -13,7 +13,8 @@
 #include <string.h>
 #include <unistd.h>
 
-// #define DEBUG_PRINT
+//#define PASSTHROUGH_MODE 1
+#define DEBUG_PRINT
 
 #define die(str, args...) do { \
     perror(str); \
@@ -38,14 +39,14 @@ int initializeUinput() {
    struct uinput_setup usetup;
    int fileHandle = open("/dev/uinput", O_WRONLY | O_NONBLOCK);
 
-   if(fileHandle < 0) 
+   if(fileHandle < 0)
       die("error: open");
 
    ioctl(fileHandle, UI_SET_EVBIT, EV_KEY);
 
    for(auto& key : virtualKeys)
       ioctl(fileHandle, UI_SET_KEYBIT, key);
-   
+
    memset(&usetup, 0, sizeof(usetup));
    usetup.id.bustype = BUS_USB;
    usetup.id.vendor = 0x1911;
@@ -63,6 +64,17 @@ int initializeUinput() {
 }
 
 int main(int argc, char** argv) {
+   /*
+      int isPassthroughMode; // TODO remove this when
+      try {
+         isPassthroughMode = std::stoi(argv[2]);
+      } catch(const std::exception& e) {
+         // std::cerr << "Invalid argument. Must be 0 or 1.\n";
+         // std::exit(EXIT_FAILURE);
+         // do nothing
+      }
+   */
+
    fprintf(stdout, "transpile time: %s,\nconfig version: %s\nmod-keys: [", transpileTime, configVersion);
 
    for(int k = 0; k < mod_key_count; ++k)
@@ -86,7 +98,9 @@ int main(int argc, char** argv) {
       fprintf(stderr, "Cannot open %s: %s.\n", devicePath, strerror(errno));
       return EXIT_FAILURE;
    }
-
+   #ifdef PASSTHROUGH_MODE
+      bool isCapsLockPressed = false;
+   #endif
 LOOP:
    do {
       charactersRead = read(fileHandle_keyboardInput, &inputEvent, sizeof inputEvent);
@@ -99,6 +113,12 @@ LOOP:
       }
 
       if((EV_KEY == inputEvent.type) && (0 <= inputEvent.value) && (inputEvent.value <= 2)) {
+         #ifdef PASSTHROUGH_MODE
+            bool isPassthroughKey = true;
+            if(KEY_CAPSLOCK == inputEvent.code) {
+               isCapsLockPressed = (KeyPressEventTypes::keyPressed == inputEvent.value) ? true : false;
+            }
+         #endif
          for(int k = 0; k < mod_key_count; ++k)
          {
             if(mod_keys[k] == inputEvent.code)
@@ -107,13 +127,20 @@ LOOP:
                   goto LOOP;
 
                mod_key_state[mod_keys[k]] = (KeyPressEventTypes::keyPressed == inputEvent.value) ? true : false;
-#ifdef DEBUG_PRINT
-               fprintf(stderr, "=====================\n");
-               for(auto& key : mod_keys)
-                  if(KeyPressEventTypes::keyHeld != inputEvent.value)
-                     fprintf(stderr, "key: %d, state: %d\n", key, mod_key_state[key]);
-               fprintf(stderr, "=====================\n");
-#endif
+               #ifdef DEBUG_PRINT
+                  fprintf(stderr, "=====================\n");
+                  for(auto& key : mod_keys)
+                     if(KeyPressEventTypes::keyHeld != inputEvent.value)
+                        fprintf(stderr, "key: %d, state: %d\n", key, mod_key_state[key]);
+                  fprintf(stderr, "=====================\n");
+               #endif
+               #ifdef PASSTHROUGH_MODE
+                  if(!isCapsLockPressed) {
+                     fprintf(stdout, "\nprs/rel PASSTHROUGH ξ key: %d", inputEvent.code);
+                     emit(fileHandle_uinput, EV_KEY, inputEvent.code, inputEvent.value);
+                     emit(fileHandle_uinput, EV_SYN, SYN_REPORT, 0);
+                  }
+               #endif
                goto LOOP; // this is to shortciruit the rest of the code. continuing here
                // will only break the inner for-loop, meaning it would still traverse cm completely.
             }
@@ -124,16 +151,16 @@ LOOP:
                if((KeyPressEventTypes::keyReleased == inputEvent.value) && (0 < cm[k].virtual_key_count))
                {
                   // ...release all virtual keys, this might cause issues, but it is unlikely
-#ifdef DEBUG_PRINT
-                  fprintf(stdout, "\nvirtual_key_count: %d, keys: ", cm[k].virtual_key_count);
-                  for(int i = 0; i < cm[k].virtual_key_count; ++i) fprintf(stdout, " %d", cm[k].virtual_keys[i]);
-#endif
+                  #ifdef DEBUG_PRINT
+                     fprintf(stdout, "\nvirtual_key_count: %d, keys: ", cm[k].virtual_key_count);
+                     for(int i = 0; i < cm[k].virtual_key_count; ++i) fprintf(stdout, " %d", cm[k].virtual_keys[i]);
+                  #endif
                   for(int i = 0; i < cm[k].virtual_key_count; ++i)
                   {
                      // ..we might want to only send keyUp events to a subset of the keys
-#ifdef DEBUG_PRINT
-                     fprintf(stdout, "\n\npressing VIRT key: %d", cm[k].virtual_keys[i]);
-#endif
+                     #ifdef DEBUG_PRINT
+                        fprintf(stdout, "\n\npressing VIRT key: %d", cm[k].virtual_keys[i]);
+                     #endif
                      emit(fileHandle_uinput, EV_KEY, cm[k].virtual_keys[i], 0);
                      emit(fileHandle_uinput, EV_SYN, SYN_REPORT, 0);
                   }
@@ -149,37 +176,54 @@ LOOP:
                         goto CHORD_MAP_CONTINUE;
                      }
                   }
-                  if(0 < cm[k].virtual_key_count)
-                  {
-#ifdef DEBUG_PRINT
-                     fprintf(stdout, "\n git into VirtKeyChord: %d", cm[k].virtual_key_count);
-#endif
+                  //as soon as something is triggered, the key doesn't count as a passthrough key!
+                  #ifdef PASSTHROUGH_MODE
+                     isPassthroughKey = false;
+                  #endif
+                  if(0 < cm[k].virtual_key_count) {
+                     #ifdef DEBUG_PRINT
+                        fprintf(stdout, "\n got into VirtKeyChord: %d", cm[k].virtual_key_count);
+                     #endif
                      for(int i = 0; i < cm[k].virtual_key_count; ++i) {
                         // ..we might want to only send keyUp events to a subset of the keys
-#ifdef DEBUG_PRINT
-                        fprintf(stdout, "\nreleasing key: %d", cm[k].virtual_keys[i]);
-#endif
+                        #ifdef DEBUG_PRINT
+                           fprintf(stdout, "\nreleasing key: %d", cm[k].virtual_keys[i]);
+                        #endif
                         emit(fileHandle_uinput, EV_KEY, cm[k].virtual_keys[i], 1);
                         emit(fileHandle_uinput, EV_SYN, SYN_REPORT, 0);
                      }
                   } else {
-#ifdef DEBUG_PRINT
+                     #ifdef DEBUG_PRINT
                         if(nullptr != cm[k].system_command) fprintf(stderr, "\nchord matches, exec SYSTEM CMD: »%s«", cm[k].system_command);
-#endif
+                     #endif
                      system(cm[k].system_command);
                   }
-                  if(cm[k].exclusive)
-                  {
-#ifdef DEBUG_PRINT
-                     fprintf(stdout, "exclusive chord, returning to LOOP");
-#endif
+                  if(cm[k].exclusive) {
+                     #ifdef DEBUG_PRINT
+                        fprintf(stdout, "exclusive chord, returning to LOOP");
+                     #endif
                      goto LOOP;
                   }
                }
-            CHORD_MAP_CONTINUE:
-               continue;
+               CHORD_MAP_CONTINUE:
+                  continue;
             }
          }
+
+      // isPassthroughKey = true;
+      // isCapslockPressed = false;
+
+      // If it's neither, pass it through to the virtual keyboard. 
+      // if Capslock is suppressed, we don't send anything.
+      #ifdef PASSTHROUGH_MODE
+         fprintf(stdout, "\nisCapsLockPressed: %d, isPassthroughKey: %d", isCapsLockPressed, isPassthroughKey);
+         if(!isCapsLockPressed && isPassthroughKey) {
+            fprintf(stdout, "\nprs/rel PASSTHROUGH key: %d, val: %d", inputEvent.code, inputEvent.value);
+            emit(fileHandle_uinput, EV_KEY, inputEvent.code, inputEvent.value);
+            emit(fileHandle_uinput, EV_SYN, SYN_REPORT, 0);
+         }
+      #endif
+      
       }
    } while (1);
 
