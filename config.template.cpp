@@ -8,9 +8,8 @@ static const char* configVersion = /*%__CONFIG_VERSION__%*/"";
 
 // a list of all mod keys you plan on using (within mochby)
 
-
-
-#define PASSTHROUGH_MODE 1
+#define PASSTHROUGH_MODE
+#define WINDOWS_MODE
 
 #ifdef PASSTHROUGH_MODE
 static const std::array<int,  112> virtualKeys = {
@@ -127,7 +126,7 @@ static const std::array<int,  112> virtualKeys = {
    KEY_KPPLUSMINUS,
    KEY_PAUSE
 };
-#elif
+#else
 static const unsigned short mod_keys[] = {
    /*%__MOD_KEYS_BODY__%*/
 };

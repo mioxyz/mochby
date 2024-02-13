@@ -6,7 +6,7 @@ Edit the `config.json` to fit your needs, then run `sudo ./auto/install_full.rb`
 
 ### Editing the Config.json file
 `config.json` contains a key `chord_maps` which in turn contains chord objects:
-```
+```json
 {
    "chord_maps": [
       {
@@ -55,6 +55,9 @@ My keyboard allows for multiple keys to be pressed simultaneously, but certain k
 
 2. map »`Mod4`+`A`« to Ctrl. This might seem a bit confusing if you haven't tried this before, but it becomes quickly unconfusing if tried in practice. Pressing »`Mod4`+`A`« acts as if you would be pressing `Mod4` and `Ctrl` (and not the A-key) allowing for additional `Ctrl`+`Mod4`'ed keypresses to be performed. If you have »`Mod4`+`l`« mapped to the right arrow key, then pressing »`Mod4`+`A`+`L`« (in that sequence without releasing the pressed keys) will be as if pressing »`Ctrl`+`→`«.
 
+## Is this Cursed?
+Yes. Yes it is.
+
 ## Open
 - [+] I would like to add a virtual keyboard output device to the mix, as to bypass xdotool (and not have to do the ugly `system("stuff");` calls) and to guarantee that the keystrokes arriving in the X11 window do not mix with the causal mod-chord. For example, if I would like to map »`Mod4`+`d`« to »`Shift`+`t`« for whatever reason, I would prefer if the Window Manager and X11 would not mangle the keystrokes together. I'm not entirely sure if this makes sense, I'll have to try it out.~~
 - [x] update the config.json for stuff like mapping `Capslock+A+O` onto `Ctrl+Shift+Del`.
@@ -62,9 +65,12 @@ My keyboard allows for multiple keys to be pressed simultaneously, but certain k
 - [x] add map `Capslock+A+C` to `Shift+End` and `Capslock+A+X` to `Shift+Home`
 - [ ] add switchable modes
 
+## Clopen
+- [!] config transpilation has proven too cursed and now shouldn't be used anylonger.
+
 ## Open Problems
 There is no way to suppress the physical keyboard's output (see **Update** below). For example, mapping `Capslock+Space` to the `_`-character can be done in two ways, either by using virtual keys (which is faster than calling xdotool and simulates key-press and key-release events):
-```
+```json
 {
    "virtual_keys": [ "KEY_LEFTSHIFT", "KEY_MINUS" ],
    "mod_keys": [ "KEY_CAPSLOCK" ],
@@ -73,7 +79,7 @@ There is no way to suppress the physical keyboard's output (see **Update** below
 }
 ```
 or using *xdotool*:
-```
+```json
 {
    "shell_command": "xdotool type '_'",
    "mod_keys": [ "KEY_CAPSLOCK" ],

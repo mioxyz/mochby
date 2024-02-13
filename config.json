@@ -11,260 +11,152 @@
   "chord_maps": [
     {
       "shell_command": "sleep 0.1; xdotool key 'Super+F1'",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_F1",
       "exclusive": true
     },
     {
       "shell_command": "rofi -show window",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_G",
       "exclusive": true
     },
     {
       "shell_command": "/home/mio/.config/i3/scripts/i3-scripts/unicode_inserter.rb",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_P"
     },
-
-
     {
-      "mod_keys":     [ "KEY_CAPSLOCK" ], 
+      "mod_keys":     [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_TAB",
-      "virtual_keys": [ "KEY_LEFTMETA", "KEY_J" ], 
+      "virtual_keys": [ "KEY_LEFTMETA", "KEY_J" ],
       "exclusive": true
     },
-
-
     {
-      "virtual_keys": [
-        "KEY_LEFTCTRL",
-        "KEY_DELETE"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_A"
-      ],
+      "virtual_keys": [ "KEY_LEFTCTRL", "KEY_DELETE" ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_A" ],
       "terminal_key": "KEY_O",
       "exclusive": true
     },
     {
-      "virtual_keys": [
-        "KEY_LEFTSHIFT",
-        "KEY_HOME"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_A"
-      ],
+      "virtual_keys": [ "KEY_LEFTSHIFT", "KEY_HOME" ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_A" ],
       "terminal_key": "KEY_X",
       "exclusive": true
     },
     {
-      "virtual_keys": [
-        "KEY_LEFTSHIFT",
-        "KEY_END"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_A"
-      ],
+      "virtual_keys": [ "KEY_LEFTSHIFT", "KEY_END" ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_A" ],
       "terminal_key": "KEY_C",
       "exclusive": true
     },
     {
-      "virtual_keys": [
-        "KEY_HOME"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "virtual_keys": [ "KEY_HOME" ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_X",
       "exclusive": true
     },
     {
-      "virtual_keys": [
-        "KEY_END"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "virtual_keys": [ "KEY_END" ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_C",
       "exclusive": true
     },
     {
       "shell_command": "xdotool type 'Ö'",
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_S"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ],
       "terminal_key": "KEY_9",
       "exclusive": true
     },
     {
       "shell_command": "xdotool type 'ö'",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_9",
       "exclusive": true
     },
     {
       "shell_command": "xdotool type 'Ü'",
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_S"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ],
       "terminal_key": "KEY_7",
       "exclusive": true
     },
     {
       "shell_command": "xdotool type 'ü'",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_7",
       "exclusive": true
     },
     {
       "shell_command": "xdotool type 'Ä'",
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_S"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ],
       "terminal_key": "KEY_8",
       "exclusive": true
     },
     {
       "shell_command": "xdotool type 'ä'",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_8",
       "exclusive": true
     },
     {
-      "virtual_keys": [
-        "KEY_LEFTCTRL",
-        "KEY_LEFTSHIFT",
-        "KEY_LEFT"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_LEFTSHIFT",
-        "KEY_A"
-      ],
+      "virtual_keys": [ "KEY_LEFTCTRL", "KEY_LEFTSHIFT", "KEY_LEFT" ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_LEFTSHIFT", "KEY_A" ],
       "terminal_key": "KEY_J",
       "exclusive": false,
       "comment": "doesn't seem to work!"
     },
     {
-      "virtual_keys": [
-        "KEY_LEFTCTRL",
-        "KEY_LEFTSHIFT",
-        "KEY_RIGHT"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_LEFTSHIFT",
-        "KEY_A"
-      ],
+      "virtual_keys": [ "KEY_LEFTCTRL", "KEY_LEFTSHIFT", "KEY_RIGHT" ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_LEFTSHIFT", "KEY_A" ],
       "terminal_key": "KEY_L",
       "exclusive": false,
       "comment": "doesn't seem to work!"
     },
     {
-      "shell_command": "xdotool key 'BackSpace'; xdotool type '_'",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
-      "terminal_key": "KEY_SPACE",
-      "exclusive": false
-    },
-    {
-      "virtual_keys": [
-        "KEY_LEFTCTRL",
-        "KEY_LEFT"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_A"
-      ],
+      "virtual_keys": [ "KEY_LEFTCTRL", "KEY_LEFT" ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_A" ],
       "terminal_key": "KEY_J",
       "exclusive": false
     },
     {
-      "virtual_keys": [
-        "KEY_LEFTCTRL",
-        "KEY_RIGHT"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_A"
-      ],
+      "virtual_keys": [ "KEY_LEFTCTRL", "KEY_RIGHT" ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_A"],
       "terminal_key": "KEY_L",
       "exclusive": false
     },
     {
       "shell_command": "i3-msg 'workspace prev'",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "mod_keys": ["KEY_CAPSLOCK"],
       "terminal_key": "KEY_Q"
     },
     {
       "shell_command": "i3-msg 'workspace next'",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "mod_keys": ["KEY_CAPSLOCK"],
       "terminal_key": "KEY_D"
     },
     {
-      "virtual_keys": [
-        "KEY_ESC"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "virtual_keys": ["KEY_ESC"],
+      "mod_keys": ["KEY_CAPSLOCK"],
       "terminal_key": "KEY_F"
     },
     {
-      "virtual_keys": [
-        "KEY_PAGEUP"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "virtual_keys": ["KEY_PAGEUP"],
+      "mod_keys": ["KEY_CAPSLOCK"],
       "terminal_key": "KEY_U"
     },
     {
-      "virtual_keys": [
-        "KEY_PAGEDOWN"
-      ],
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "virtual_keys": [ "KEY_PAGEDOWN" ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_H"
     },
     {
       "shell_command": "i3-msg focus down",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
-      "terminal_key": "KEY_H"
+      "mod_keys": [ "KEY_CAPSLOCK" ], "terminal_key": "KEY_H"
     },
     {
       "shell_command": "/home/ottoma/code/projects/i3-scripts/i3_cycle_windows.rb",
       "old": "i3-msg focus left",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_N"
     },
     {
@@ -278,26 +170,24 @@
   ],
   "inactive": [
     {
+      "shell_command": "xdotool key 'BackSpace'; xdotool type '_'",
+      "mod_keys": [ "KEY_CAPSLOCK" ],
+      "terminal_key": "KEY_SPACE",
+      "exclusive": false
+    },
+    {
       "shell_command": "xdotool key 'Shift+Ctrl+Up'",
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_S"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ],
       "terminal_key": "KEY_K"
     },
     {
       "shell_command": "xdotool key 'Shift+Ctrl+Down'",
-      "mod_keys": [
-        "KEY_CAPSLOCK",
-        "KEY_S"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK", "KEY_S" ],
       "terminal_key": "KEY_I"
     },
     {
       "shell_command": "xdotool key 'ctrl+0xffc1'",
-      "mod_keys": [
-        "KEY_CAPSLOCK"
-      ],
+      "mod_keys": [ "KEY_CAPSLOCK" ],
       "terminal_key": "KEY_SLASH",
       "exclusive": false
     }
